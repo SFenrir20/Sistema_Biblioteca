@@ -7,6 +7,7 @@ package Services;
 import Model.Usuario;
 import Util.Conexion;
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.sql.Types;
 
 /**
@@ -17,20 +18,21 @@ public class LoginRepository implements ILogin{
 
     @Override
     public boolean verificarCredenciales(String username, String password) {
+        ResultSet rs= null;
         try {
-            CallableStatement ct = Conexion.ObtenerConexion().prepareCall("{Call VerificarCredenciales(?,?,?)}");
+            CallableStatement ct = Conexion.ObtenerConexion().prepareCall("{Call verificarCredenciales(?,?)}");
             ct.setString(1, username);
             ct.setString(2, password);
-            ct.registerOutParameter(3,Types.BOOLEAN);
-            ct.execute();
-            
-            boolean CredecialesValidad = ct.getBoolean(3);
+            rs = ct.executeQuery();
+            if(rs.next()){
+                return true;
+            }
             Conexion.ObtenerConexion().close();
-            return CredecialesValidad;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+           // return null;
         }
+        return false;
     }
     
 }

@@ -74,6 +74,11 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(TbMostrarResg);
 
         Btn_New.setText("Nuevo");
+        Btn_New.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_NewActionPerformed(evt);
+            }
+        });
 
         Btn_Grabar.setText("Grabar");
 
@@ -178,6 +183,11 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
     private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Btn_EliminarActionPerformed
+
+    private void Btn_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_NewActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_Btn_NewActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
