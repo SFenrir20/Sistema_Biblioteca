@@ -4,17 +4,50 @@
  */
 package com.mycompany.sistema_biblioteca;
 
+import Controllers.UsuarioController;
+import Model.Usuario;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author santi
  */
 public class Registar_Usuarios extends javax.swing.JInternalFrame {
+    private DefaultTableModel dtmUsuario = new DefaultTableModel();
+    private DefaultComboBoxModel Cbox = new DefaultComboBoxModel();
+    private UsuarioController uController = new UsuarioController();
 
     /**
      * Creates new form Registar_Usuarios
      */
     public Registar_Usuarios() {
         initComponents();
+        LlenarTabla();
+        LlenaLista();
+    }
+    
+    public void LlenarTabla(){
+        dtmUsuario.addColumn("Codigo");
+        dtmUsuario.addColumn("Nombre");
+        dtmUsuario.addColumn("Categoria");
+        dtmUsuario.addColumn("Email");
+    }
+    
+    public void LlenaLista(){
+        List<Usuario> lst = uController.getLstUsuariosController();
+        for (int i = 0; i < lst.size(); i++) {
+            Object[] vec = new Object[4];
+            vec[0] = lst.get(i).getCodigo();
+            vec[1] = lst.get(i).getNombre();
+            vec[2] = lst.get(i).getCategoria();
+            vec[3] = lst.get(i).getEmail();
+            
+            dtmUsuario.addRow(vec);
+        }
+        this.TbMostrarResg.setModel(dtmUsuario);
     }
 
     /**
@@ -81,6 +114,11 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
         });
 
         Btn_Grabar.setText("Grabar");
+        Btn_Grabar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_GrabarActionPerformed(evt);
+            }
+        });
 
         Btn_Editar.setText("Editar");
 
@@ -182,12 +220,30 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
 
     private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
         // TODO add your handling code here:
+        Usuario objUsuario = new Usuario();
+        objUsuario.setCodigo(Integer.parseInt(this.txtCodigo.getText()));
+        uController.EliminarUsController(objUsuario);
+        
+        JOptionPane.showMessageDialog(this, "¿Deseas borrar registro?");
     }//GEN-LAST:event_Btn_EliminarActionPerformed
 
     private void Btn_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_NewActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_Btn_NewActionPerformed
+
+    private void Btn_GrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GrabarActionPerformed
+        // TODO add your handling code here:
+        Usuario objUsuario = new Usuario();
+        objUsuario.setCodigo(Integer.parseInt(this.txtCodigo.getText()));
+        objUsuario.setNombre(this.txtNombre.getText());
+        objUsuario.setContraseña(this.txtContraseña.getText());
+        objUsuario.setEmail(this.txtNombre.getText());
+        
+        uController.InsertarUsController(objUsuario);
+        JOptionPane.showMessageDialog(this,"Registro grabado Satisfactorio");
+        LlenaLista();
+    }//GEN-LAST:event_Btn_GrabarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
