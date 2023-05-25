@@ -4,23 +4,34 @@
  */
 package Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author santi
  */
 public class Usuario {
-    
+    private int codigo;
     private String nombre;
-    private String password;
-    private List<Libro> historialPrestamo;  
+    private String Contraseña;
+    private String Categoria;
+    private String email;
 
-    public Usuario(String nombre, String password, List<Libro> historialPrestamo) {
+    public Usuario() {
+    }
+
+    public Usuario(int codigo, String nombre, String Contraseña, String Categoria, String email) {
+        this.codigo = codigo;
         this.nombre = nombre;
-        this.password = password;
-        historialPrestamo = new ArrayList<>();
+        this.Contraseña = Contraseña;
+        this.Categoria = Categoria;
+        this.email = email;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getNombre() {
@@ -31,23 +42,29 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContraseña() {
+        return Contraseña;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setContraseña(String Contraseña) {
+        this.Contraseña = Contraseña;
     }
 
-    public List<Libro> getHistorialPrestamo() {
-        return historialPrestamo;
+    public String getCategoria() {
+        return Categoria;
     }
 
-    public void setHistorialPrestamo(List<Libro> historialPrestamo) {
-        this.historialPrestamo = historialPrestamo;
+    public void setCategoria(String Categoria) {
+        this.Categoria = Categoria;
     }
-    
-    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
     
     

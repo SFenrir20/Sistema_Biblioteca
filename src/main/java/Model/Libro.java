@@ -9,19 +9,22 @@ package Model;
  * @author santi
  */
 public class Libro {
+    
+    private int codigo;
     private String titulo;
     private String autor;
+    private int NumCopias;
     private String genero;
-    private int numCopias;
 
     public Libro() {
     }
 
-    public Libro(String titulo, String autor, String genero, int numCopias) {
-        this.titulo = titulo;
-        this.autor = autor;
-        this.genero = genero;
-        this.numCopias = numCopias;
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getTitulo() {
@@ -40,20 +43,20 @@ public class Libro {
         this.autor = autor;
     }
 
+    public int getNumCopias() {
+        return NumCopias;
+    }
+
+    public void setNumCopias(int NumCopias) {
+        this.NumCopias = NumCopias;
+    }
+
     public String getGenero() {
         return genero;
     }
 
     public void setGenero(String genero) {
         this.genero = genero;
-    }
-
-    public int getNumCopias() {
-        return numCopias;
-    }
-
-    public void setNumCopias(int numCopias) {
-        this.numCopias = numCopias;
     }
     
     
