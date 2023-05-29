@@ -16,4 +16,5 @@ public interface IRusuario {
     void addUsuarios(Usuario us);
     void removeUsuario(Usuario us);
     void updateUsuario(Usuario us);
+    int getCorrelativo();
 }

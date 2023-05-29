@@ -29,4 +29,8 @@ public class UsuarioController {
     public void ActualizarUsController(Usuario us){
         new RusuarioRepository().addUsuarios(us);
     }
+    
+    public int GetCorrelativoController(){
+        return new RusuarioRepository().getCorrelativo();
+    }
 }

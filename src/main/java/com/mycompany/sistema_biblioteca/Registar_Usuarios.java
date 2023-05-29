@@ -37,6 +37,7 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
     }
     
     public void LlenaLista(){
+        dtmUsuario.setRowCount(0);
         List<Usuario> lst = uController.getLstUsuariosController();
         for (int i = 0; i < lst.size(); i++) {
             Object[] vec = new Object[4];
@@ -64,7 +65,6 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -76,6 +76,7 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
         Btn_Eliminar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        txtCategoria = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -88,8 +89,6 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
         jLabel2.setText("Contrseña:");
 
         jLabel3.setText("Categoria:");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setText("email:");
 
@@ -168,9 +167,9 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
                                             .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addGap(30, 30, 30)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                                                .addComponent(txtCategoria))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(31, 31, 31)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -203,7 +202,7 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_New)
@@ -230,6 +229,11 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
     private void Btn_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_NewActionPerformed
         // TODO add your handling code here:
         
+        txtCodigo.setText(uController.GetCorrelativoController()+"");
+        txtNombre.setText("");
+        txtContraseña.setText("");
+        txtCategoria.setText("");
+        txtEmail.setText("");
     }//GEN-LAST:event_Btn_NewActionPerformed
 
     private void Btn_GrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GrabarActionPerformed
@@ -237,6 +241,7 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
         Usuario objUsuario = new Usuario();
         objUsuario.setCodigo(Integer.parseInt(this.txtCodigo.getText()));
         objUsuario.setNombre(this.txtNombre.getText());
+        objUsuario.setCategoria(this.txtCategoria.getText());
         objUsuario.setContraseña(this.txtContraseña.getText());
         objUsuario.setEmail(this.txtNombre.getText());
         
@@ -253,13 +258,13 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
     private javax.swing.JButton Btn_Grabar;
     private javax.swing.JButton Btn_New;
     private javax.swing.JTable TbMostrarResg;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtEmail;

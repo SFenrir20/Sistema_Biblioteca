@@ -52,6 +52,7 @@ public class RusuarioRepository implements IRusuario {
             ps.setString(3, us.getContraseña());
             ps.setString(4, us.getCategoria());
             ps.setString(5, us.getEmail());
+            ps.executeQuery();
         } catch (Exception e) {
         }
     }
@@ -78,6 +79,25 @@ public class RusuarioRepository implements IRusuario {
             ps.execute();
         } catch (Exception e) {
         }
+    }
+
+    @Override
+    public int getCorrelativo() {
+        ResultSet rs = null;
+        int count = 1;
+        try {
+            CallableStatement ct = Conexion.ObtenerConexion().prepareCall("{CALL GetCorrelativo}");
+            rs = ct.executeQuery();
+            
+            while(rs.next()){
+                count+=rs.getInt("Id_Usuario");
+                
+            }
+            Conexion.ObtenerConexion().close();
+            return count;
+        } catch (Exception e) {
+        }
+        return 99;
     }
     
 }
