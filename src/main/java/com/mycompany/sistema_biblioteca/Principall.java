@@ -32,19 +32,29 @@ public class Principall extends javax.swing.JFrame {
         opRegistrarUsuario = new javax.swing.JMenuItem();
         Libros = new javax.swing.JMenu();
         opRegistrarLibros = new javax.swing.JMenuItem();
-        opVerHistorial = new javax.swing.JMenuItem();
+        opGeneros = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        opTramites = new javax.swing.JMenuItem();
+        opCatalogo = new javax.swing.JMenuItem();
+        opHistorial = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
+
+        escritorio.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
+            .addGap(0, 1920, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 435, Short.MAX_VALUE)
+            .addGap(0, 1080, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Admin");
@@ -71,16 +81,64 @@ public class Principall extends javax.swing.JFrame {
         });
         Libros.add(opRegistrarLibros);
 
-        opVerHistorial.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        opVerHistorial.setText("Historial");
-        opVerHistorial.addActionListener(new java.awt.event.ActionListener() {
+        opGeneros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        opGeneros.setText("Registrar Generos");
+        opGeneros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opVerHistorialActionPerformed(evt);
+                opGenerosActionPerformed(evt);
             }
         });
-        Libros.add(opVerHistorial);
+        Libros.add(opGeneros);
 
         jMenuBar1.add(Libros);
+
+        jMenu3.setText("Transaccion");
+
+        opTramites.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        opTramites.setText("Tramites");
+        opTramites.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opTramitesActionPerformed(evt);
+            }
+        });
+        jMenu3.add(opTramites);
+
+        opCatalogo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        opCatalogo.setText("Catalogo");
+        opCatalogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opCatalogoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(opCatalogo);
+
+        opHistorial.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        opHistorial.setText("Historial");
+        opHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opHistorialActionPerformed(evt);
+            }
+        });
+        jMenu3.add(opHistorial);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu7.setText("Edit");
+
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        jMenuItem5.setText("edit_estados");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem5);
+
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem6.setText("edit_categorias");
+        jMenu7.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
 
@@ -88,15 +146,11 @@ public class Principall extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -111,19 +165,44 @@ public class Principall extends javax.swing.JFrame {
         
     }//GEN-LAST:event_opRegistrarUsuarioActionPerformed
 
-    private void opVerHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opVerHistorialActionPerformed
-        // TODO add your handling code here:
-        Ver_Historial verHisto = new Ver_Historial();
-        escritorio.add(verHisto);
-        verHisto.show();
-    }//GEN-LAST:event_opVerHistorialActionPerformed
-
     private void opRegistrarLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opRegistrarLibrosActionPerformed
         // TODO add your handling code here:
         Registar_Libros verLibros = new Registar_Libros();
         escritorio.add(verLibros);
         verLibros.show();
     }//GEN-LAST:event_opRegistrarLibrosActionPerformed
+
+    private void opGenerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGenerosActionPerformed
+        // TODO add your handling code here:
+        Registrar_Generos vGeneros = new Registrar_Generos();
+        escritorio.add(vGeneros);
+        vGeneros.show();
+    }//GEN-LAST:event_opGenerosActionPerformed
+
+    private void opTramitesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opTramitesActionPerformed
+        // TODO add your handling code here:
+        Registrar_Tramites vertrTramites = new Registrar_Tramites();
+        escritorio.add(vertrTramites);
+        vertrTramites.show();
+    }//GEN-LAST:event_opTramitesActionPerformed
+
+    private void opHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opHistorialActionPerformed
+        // TODO add your handling code here:
+        Ver_Historial verHisto = new Ver_Historial();
+        escritorio.add(verHisto);
+        verHisto.show();
+    }//GEN-LAST:event_opHistorialActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void opCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCatalogoActionPerformed
+        // TODO add your handling code here:
+        Ver_Catalogo verCat = new Ver_Catalogo();
+        escritorio.add(verCat);
+        verCat.show();
+    }//GEN-LAST:event_opCatalogoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,9 +243,16 @@ public class Principall extends javax.swing.JFrame {
     private javax.swing.JMenu Libros;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem opCatalogo;
+    private javax.swing.JMenuItem opGeneros;
+    private javax.swing.JMenuItem opHistorial;
     private javax.swing.JMenuItem opRegistrarLibros;
     private javax.swing.JMenuItem opRegistrarUsuario;
-    private javax.swing.JMenuItem opVerHistorial;
+    private javax.swing.JMenuItem opTramites;
     // End of variables declaration//GEN-END:variables
 }

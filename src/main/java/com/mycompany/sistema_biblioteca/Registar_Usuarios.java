@@ -120,8 +120,18 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
         });
 
         Btn_Editar.setText("Editar");
+        Btn_Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_EditarActionPerformed(evt);
+            }
+        });
 
         Btn_Buscar.setText("Buscar");
+        Btn_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_BuscarActionPerformed(evt);
+            }
+        });
 
         Btn_Eliminar.setText("Eliminar");
         Btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +160,7 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
                                 .addGap(33, 33, 33)
                                 .addComponent(Btn_Eliminar))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(35, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -175,9 +185,9 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                                             .addComponent(txtNombre))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(36, 36, 36)
                         .addComponent(Btn_Buscar)
-                        .addGap(273, 273, 273))))
+                        .addGap(252, 252, 252))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +219,7 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
                     .addComponent(Btn_Grabar)
                     .addComponent(Btn_Editar)
                     .addComponent(Btn_Eliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -243,12 +253,38 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
         objUsuario.setNombre(this.txtNombre.getText());
         objUsuario.setCategoria(this.txtCategoria.getText());
         objUsuario.setContraseña(this.txtContraseña.getText());
-        objUsuario.setEmail(this.txtNombre.getText());
+        objUsuario.setEmail(this.txtEmail.getText());
         
         uController.InsertarUsController(objUsuario);
         JOptionPane.showMessageDialog(this,"Registro grabado Satisfactorio");
         LlenaLista();
     }//GEN-LAST:event_Btn_GrabarActionPerformed
+
+    private void Btn_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditarActionPerformed
+        // TODO add your handling code here:
+        Usuario objUS = new Usuario();
+        objUS.setCodigo(Integer.parseInt(this.txtCodigo.getText()));
+        objUS.setNombre(this.txtNombre.getText());
+        objUS.setCategoria(this.txtCategoria.getText());
+        objUS.setContraseña(this.txtContraseña.getText());
+        objUS.setEmail(this.txtEmail.getText());
+        
+        uController.InsertarUsController(objUS);
+        JOptionPane.showMessageDialog(this, "Registro Actualizado!!");
+        LlenaLista();
+    }//GEN-LAST:event_Btn_EditarActionPerformed
+
+    private void Btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BuscarActionPerformed
+        // TODO add your handling code here:
+        List<Usuario> lst = uController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
+        for(Usuario x:lst){
+            Integer.parseInt(this.txtCodigo.getText());
+            this.txtNombre.getText();
+            this.txtCategoria.getText();
+            this.txtContraseña.getText();
+            this.txtEmail.getText();
+        }
+    }//GEN-LAST:event_Btn_BuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

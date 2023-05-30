@@ -8,12 +8,12 @@ package com.mycompany.sistema_biblioteca;
  *
  * @author santi
  */
-public class Ver_Historial extends javax.swing.JInternalFrame {
+public class Edit_Categoria extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Ver_Historial
+     * Creates new form Edit_Categoria
      */
-    public Ver_Historial() {
+    public Edit_Categoria() {
         initComponents();
     }
 

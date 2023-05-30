@@ -9,8 +9,11 @@ import Util.Conexion;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -98,6 +101,32 @@ public class RusuarioRepository implements IRusuario {
         } catch (Exception e) {
         }
         return 99;
+    }
+
+    @Override
+    public List<Usuario> BuscarUsuarioXCodigo(int codigo) {
+        try {
+            List<Usuario> lstUsuario = new ArrayList<>();
+            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL BuscarUsuario(?)}");
+            cs.setInt(1, codigo);
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                Usuario objUsuario = new Usuario();
+                objUsuario.setCodigo(rs.getInt("Id_Usuario"));
+                objUsuario.setNombre(rs.getString("nombre"));
+                objUsuario.setCategoria(rs.getString("Categoria"));
+                objUsuario.setEmail(rs.getString("Email"));
+                
+                lstUsuario.add(objUsuario);
+                break;
+            }
+            Conexion.ObtenerConexion().close();
+            rs.close();
+            return lstUsuario;
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        return null;
     }
     
 }

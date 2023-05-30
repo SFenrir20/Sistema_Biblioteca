@@ -33,4 +33,8 @@ public class UsuarioController {
     public int GetCorrelativoController(){
         return new RusuarioRepository().getCorrelativo();
     }
+    
+    public List<Usuario> BuscarCodigoController(int codigo){
+        return new RusuarioRepository().getAllUsuario();
+    }
 }
