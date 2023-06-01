@@ -15,7 +15,11 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
      */
     public Registar_Libros() {
         initComponents();
+        jSpinner1.getValue();
+      
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,6 +71,11 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
         jButton3.setText("EDITAR");
 
         jButton4.setText("NUEVO");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("GRABAR");
 
@@ -163,6 +172,11 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        System.out.println(jSpinner1.getValue().toString());
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -14,16 +14,18 @@ public class Usuario {
     private String Contraseña;
     private String Categoria;
     private String email;
+    private int Id_Cat;
 
     public Usuario() {
     }
 
-    public Usuario(int codigo, String nombre, String Contraseña, String Categoria, String email) {
+    public Usuario(int codigo, String nombre, String Contraseña, String Categoria, String email, int Id_Cat) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.Contraseña = Contraseña;
         this.Categoria = Categoria;
         this.email = email;
+        this.Id_Cat = Id_Cat;
     }
 
     public int getCodigo() {
@@ -64,6 +66,14 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getId_Cat() {
+        return Id_Cat;
+    }
+
+    public void setId_Cat(int Id_Cat) {
+        this.Id_Cat = Id_Cat;
     }
     
     

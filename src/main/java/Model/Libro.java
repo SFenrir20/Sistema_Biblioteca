@@ -15,8 +15,18 @@ public class Libro {
     private String autor;
     private int NumCopias;
     private String genero;
+    private int Id_Genero;
 
     public Libro() {
+    }
+
+    public Libro(int codigo, String titulo, String autor, int NumCopias, String genero, int Id_Genero) {
+        this.codigo = codigo;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.NumCopias = NumCopias;
+        this.genero = genero;
+        this.Id_Genero = Id_Genero;
     }
 
     public int getCodigo() {
@@ -57,6 +67,14 @@ public class Libro {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public int getId_Genero() {
+        return Id_Genero;
+    }
+
+    public void setId_Genero(int Id_Genero) {
+        this.Id_Genero = Id_Genero;
     }
     
     

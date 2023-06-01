@@ -10,6 +10,7 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -49,14 +50,16 @@ public class RusuarioRepository implements IRusuario {
     @Override
     public void addUsuarios(Usuario us) {
         try {
-            PreparedStatement ps = Conexion.ObtenerConexion().prepareCall("{CALL InsertarUs(?,?,?,?,?)}");
+            PreparedStatement ps = Conexion.ObtenerConexion().prepareCall("{CALL InsertarUs(?,?,?,?,?,?)}");
             ps.setInt(1, us.getCodigo());
             ps.setString(2, us.getNombre());
             ps.setString(3, us.getContraseña());
             ps.setString(4, us.getCategoria());
             ps.setString(5, us.getEmail());
+            ps.setInt(6, us.getId_Cat());
             ps.executeQuery();
         } catch (Exception e) {
+            System.out.println("Error en addUsuario");
         }
     }
 
@@ -67,40 +70,47 @@ public class RusuarioRepository implements IRusuario {
             ps.setInt(1, us.getCodigo());
             ps.execute();
         } catch (Exception e) {
+            System.out.println("Error removeUsuario");
         }
     }
 
     @Override
     public void updateUsuario(Usuario us) {
         try {
-            PreparedStatement ps = Conexion.ObtenerConexion().prepareCall("{CALL UpdateUS}");
+            PreparedStatement ps = Conexion.ObtenerConexion().prepareStatement("{CALL UpdateUS(?,?,?,?,?,?)}");
             ps.setInt(1, us.getCodigo());
+             System.out.println("Error 1");
             ps.setString(2, us.getNombre());
+             System.out.println("Error 2");
             ps.setString(3, us.getContraseña());
+             System.out.println("Error 3");
             ps.setString(4, us.getCategoria());
+             System.out.println("Error 4");
             ps.setString(5,us.getEmail());
-            ps.execute();
+             System.out.println("Error 5");
+            ps.setInt(6, us.getId_Cat());
+             System.out.println("Error 6");
+            ps.executeUpdate();
+             System.out.println("Error Aqui");
         } catch (Exception e) {
+            System.out.println("error al pasar los datos " + e.getMessage());
         }
     }
 
     @Override
     public int getCorrelativo() {
-        ResultSet rs = null;
-        int count = 1;
+        int SgtNum = 0;
         try {
-            CallableStatement ct = Conexion.ObtenerConexion().prepareCall("{CALL GetCorrelativo}");
-            rs = ct.executeQuery();
-            
+            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL GetCorrelativo}");
+            ResultSet rs = cs.executeQuery();
             while(rs.next()){
-                count+=rs.getInt("Id_Usuario");
-                
+                SgtNum = rs.getInt(1) + 1 ;
             }
-            Conexion.ObtenerConexion().close();
-            return count;
+            System.out.println("El número es: " + SgtNum);
         } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
-        return 99;
+        return SgtNum;
     }
 
     @Override
@@ -114,16 +124,20 @@ public class RusuarioRepository implements IRusuario {
                 Usuario objUsuario = new Usuario();
                 objUsuario.setCodigo(rs.getInt("Id_Usuario"));
                 objUsuario.setNombre(rs.getString("nombre"));
+                objUsuario.setContraseña(rs.getString("password"));
                 objUsuario.setCategoria(rs.getString("Categoria"));
                 objUsuario.setEmail(rs.getString("Email"));
+             //   objUsuario.setId_Cat(rs.getInt("Categoria_US_Id_Categoria"));
                 
                 lstUsuario.add(objUsuario);
+                System.out.println("paso este dato");
                 break;
             }
             Conexion.ObtenerConexion().close();
             rs.close();
             return lstUsuario;
         } catch (Exception ex) {
+            System.out.println("Error Bucar por codigo");
             ex.getMessage();
         }
         return null;

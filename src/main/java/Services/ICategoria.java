@@ -4,18 +4,15 @@
  */
 package Services;
 
-import Model.Libro;
+import Model.Categorias_US;
 import java.util.List;
 
 /**
  *
  * @author santi
  */
-public interface ILibro {
-    List<Libro> getAllLibros();
-    void addLibros(Libro li);
-    void removeLibro(Libro li);
-    void updateLibro(Libro li);
-    List<Libro> BuscarLibroXCodigo(int codigo);
-    int NewLibro();
+public interface ICategoria {
+    
+    List<Categorias_US> GetAll();
+    
 }

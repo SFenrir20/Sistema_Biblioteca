@@ -27,7 +27,7 @@ public class UsuarioController {
     }
     
     public void ActualizarUsController(Usuario us){
-        new RusuarioRepository().addUsuarios(us);
+        new RusuarioRepository().updateUsuario(us);
     }
     
     public int GetCorrelativoController(){
@@ -35,6 +35,6 @@ public class UsuarioController {
     }
     
     public List<Usuario> BuscarCodigoController(int codigo){
-        return new RusuarioRepository().getAllUsuario();
+        return new RusuarioRepository().BuscarUsuarioXCodigo(codigo);
     }
 }

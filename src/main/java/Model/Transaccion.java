@@ -20,11 +20,12 @@ public class Transaccion {
     private double multa;
     private int Id_Libro;
     private int Id_Usuario;
+    private int Id_Estados;
 
     public Transaccion() {
     }
 
-    public Transaccion(int codigo, String Estado, Date Fecha_Prestamo, Date Fecha_Devolucion, Date Fecha_Reserva, double multa, int Id_Libro, int Id_Usuario) {
+    public Transaccion(int codigo, String Estado, Date Fecha_Prestamo, Date Fecha_Devolucion, Date Fecha_Reserva, double multa, int Id_Libro, int Id_Usuario,int Id_Estados) {
         this.codigo = codigo;
         this.Estado = Estado;
         this.Fecha_Prestamo = Fecha_Prestamo;
@@ -33,6 +34,7 @@ public class Transaccion {
         this.multa = multa;
         this.Id_Libro = Id_Libro;
         this.Id_Usuario = Id_Usuario;
+        this.Id_Estados = this.Id_Estados;
     }
 
     public int getCodigo() {
@@ -97,6 +99,14 @@ public class Transaccion {
 
     public void setId_Usuario(int Id_Usuario) {
         this.Id_Usuario = Id_Usuario;
+    }
+
+    public int getId_Estados() {
+        return Id_Estados;
+    }
+
+    public void setId_Estados(int Id_Estados) {
+        this.Id_Estados = Id_Estados;
     }
     
     
