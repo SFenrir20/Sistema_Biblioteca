@@ -4,22 +4,70 @@
  */
 package com.mycompany.sistema_biblioteca;
 
+import Controllers.GenerosController;
+import Controllers.LibroController;
+import Model.Generos;
+import Model.Libro;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author santi
  */
 public class Registar_Libros extends javax.swing.JInternalFrame {
+    private DefaultTableModel dtmLibros = new DefaultTableModel();
+    private DefaultComboBoxModel Cbox = new DefaultComboBoxModel();
+    private LibroController lController = new LibroController();
+    private GenerosController GenController = new GenerosController();
 
     /**
      * Creates new form Registar_Libros
      */
     public Registar_Libros() {
         initComponents();
-        jSpinner1.getValue();
-      
+        LlenarTabla();
+        LenaLista();
+        CargarGeneros();
+        Spinner.getValue();  
     }
     
+    public void CargarGeneros(){
+        List<Generos> lst = GenController.GetAllGenerosController();
+        for(Generos item:lst){
+            this.CboxGen.addItem(item.getNombre_gen());            
+        }
+    }
     
+    public void LlenarTabla(){
+        dtmLibros.addColumn("Codigo");
+        dtmLibros.addColumn("Titulo");
+        dtmLibros.addColumn("Autor");
+        dtmLibros.addColumn("Genero");
+        dtmLibros.addColumn("Num_Copias");
+    }
+    
+    public void LenaLista(){
+        dtmLibros.setRowCount(0);
+        List<Libro> lst = lController.getLstLibrosController();
+        for(int i = 0; i <lst.size(); i++){
+            Object[] vec = new Object[5];
+            vec[0] = lst.get(i).getCodigo();
+            vec[1] = lst.get(i).getTitulo();
+            vec[2] = lst.get(i).getAutor();
+            vec[3] = lst.get(i).getGenero();
+            vec[4] = lst.get(i).getNumCopias();
+            
+            dtmLibros.addRow(vec);
+        }
+        this.TB_Libros.setModel(dtmLibros);
+    }
+    
+    public String GetSelectedGen(){
+        return CboxGen.getSelectedItem().toString();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,18 +83,18 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        txtCodigo = new javax.swing.JTextField();
+        txtTitulo = new javax.swing.JTextField();
+        txtAutor = new javax.swing.JTextField();
+        CboxGen = new javax.swing.JComboBox<>();
+        Spinner = new javax.swing.JSpinner();
+        Btn_Buscar = new javax.swing.JButton();
+        Btn_Eliminar = new javax.swing.JButton();
+        Btn_Editar = new javax.swing.JButton();
+        Btn_New = new javax.swing.JButton();
+        Btn_grabar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TB_Libros = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -64,22 +112,42 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Numero de Copias:");
 
-        jButton1.setText("BUSCAR");
-
-        jButton2.setText("ELIMINAR");
-
-        jButton3.setText("EDITAR");
-
-        jButton4.setText("NUEVO");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Buscar.setText("BUSCAR");
+        Btn_Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                Btn_BuscarActionPerformed(evt);
             }
         });
 
-        jButton5.setText("GRABAR");
+        Btn_Eliminar.setText("ELIMINAR");
+        Btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_EliminarActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Btn_Editar.setText("EDITAR");
+        Btn_Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_EditarActionPerformed(evt);
+            }
+        });
+
+        Btn_New.setText("NUEVO");
+        Btn_New.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_NewActionPerformed(evt);
+            }
+        });
+
+        Btn_grabar.setText("GRABAR");
+        Btn_grabar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_grabarActionPerformed(evt);
+            }
+        });
+
+        TB_Libros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -90,7 +158,7 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TB_Libros);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,28 +179,28 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel5))
                                 .addGap(52, 52, 52)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField1)
+                                    .addComponent(CboxGen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtTitulo)
+                                    .addComponent(txtCodigo)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton4)
+                                .addComponent(Btn_New)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton5)
+                                .addComponent(Btn_grabar)
                                 .addGap(30, 30, 30)
-                                .addComponent(jButton3)
+                                .addComponent(Btn_Editar)
                                 .addGap(14, 14, 14)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
-                                .addComponent(jButton2))
+                                .addComponent(Btn_Eliminar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(46, 46, 46)
-                                .addComponent(jButton1)))))
+                                .addComponent(Btn_Buscar)))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -141,30 +209,30 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_Buscar))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CboxGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(Btn_Eliminar)
+                    .addComponent(Btn_Editar)
+                    .addComponent(Btn_New)
+                    .addComponent(Btn_grabar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -173,29 +241,77 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void Btn_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_NewActionPerformed
         // TODO add your handling code here:
-        System.out.println(jSpinner1.getValue().toString());
-    }//GEN-LAST:event_jButton4ActionPerformed
+        txtCodigo.setText(lController.GetCorrelativoController()+"");
+        txtTitulo.setText("");
+        txtAutor.setText("");
+        Spinner.setValue(0);
+        
+        System.out.println(Spinner.getValue().toString());
+    }//GEN-LAST:event_Btn_NewActionPerformed
+
+    private void Btn_grabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_grabarActionPerformed
+        // TODO add your handling code here:
+         List<Libro> lst = lController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
+         for(Libro x:lst){
+             this.txtTitulo.setText(x.getTitulo());
+             this.txtAutor.setText(x.getAutor());
+             this.CboxGen.setSelectedItem(x.getGenero());
+             this.Spinner.setValue(x.getNumCopias());
+         }
+    }//GEN-LAST:event_Btn_grabarActionPerformed
+
+    private void Btn_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditarActionPerformed
+        // TODO add your handling code here:
+        Generos objGen = GenController.GetCategoriaXNombre(GetSelectedGen());
+        Libro objLi = new Libro();
+        objLi.setCodigo(Integer.parseInt(this.txtCodigo.getText()));
+        objLi.setTitulo(this.txtTitulo.getText());
+        objLi.setAutor(this.txtAutor.getText());
+        objLi.setGenero(objGen.getNombre_gen());
+       // objLi.setNumCopias(this.Spinner.getNextValue().toString());
+        
+    }//GEN-LAST:event_Btn_EditarActionPerformed
+
+    private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
+        // TODO add your handling code here:
+        Libro objLibro = new Libro();
+        objLibro.setCodigo(Integer.parseInt(this.txtCodigo.getText()));
+        lController.EliminarLibrosController(objLibro);
+        
+        JOptionPane.showMessageDialog(this, "¿Deseas borrar el Registro? ");
+    }//GEN-LAST:event_Btn_EliminarActionPerformed
+
+    private void Btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BuscarActionPerformed
+        // TODO add your handling code here:
+        List<Libro> lst = lController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
+        for(Libro x:lst){
+            this.txtTitulo.setText(x.getTitulo());
+            this.CboxGen.setSelectedItem(x.getGenero());
+            this.txtAutor.setText(x.getGenero());
+            this.Spinner.setValue(x.toString());
+        }
+    }//GEN-LAST:event_Btn_BuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton Btn_Buscar;
+    private javax.swing.JButton Btn_Editar;
+    private javax.swing.JButton Btn_Eliminar;
+    private javax.swing.JButton Btn_New;
+    private javax.swing.JButton Btn_grabar;
+    private javax.swing.JComboBox<String> CboxGen;
+    private javax.swing.JSpinner Spinner;
+    private javax.swing.JTable TB_Libros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField txtAutor;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

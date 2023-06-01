@@ -4,17 +4,47 @@
  */
 package com.mycompany.sistema_biblioteca;
 
+import Controllers.GenerosController;
+import Model.Generos;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author santi
  */
 public class Registrar_Generos extends javax.swing.JInternalFrame {
+    private DefaultTableModel dtmGenero = new DefaultTableModel();
+    private GenerosController genController = new GenerosController();
 
     /**
      * Creates new form Registrar_Generos
      */
     public Registrar_Generos() {
         initComponents();
+        llenarTabla();
+        ListarTabla();
+    }
+    
+    public void llenarTabla(){
+        dtmGenero.addColumn("Codigo");
+        dtmGenero.addColumn("Nombre");
+        dtmGenero.addColumn("Descripcion");
+    }
+    
+    public void ListarTabla(){
+        dtmGenero.setRowCount(0);
+        List<Generos> lst = genController.GetAllGenerosController();
+        for (int i=0;i<lst.size();i++){
+            Object[] vec = new Object[3];
+            vec[0] = lst.get(i).getId_Genero();
+            vec[1] = lst.get(i).getNombre_gen();
+            vec[2] = lst.get(i).getDes_gen();
+            
+            dtmGenero.addRow(vec);
+        }
+        this.tb_Gen.setModel(dtmGenero);
     }
 
     /**
@@ -30,15 +60,15 @@ public class Registrar_Generos extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        tb_Gen = new javax.swing.JTable();
+        Btn_New = new javax.swing.JButton();
+        Btn_Save = new javax.swing.JButton();
+        Btn_Delete = new javax.swing.JButton();
+        Btn_Edit = new javax.swing.JButton();
+        txtCodigo = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        txtDes = new javax.swing.JTextField();
+        Btn_Search = new javax.swing.JButton();
 
         jLabel1.setText("Codigo:");
 
@@ -46,7 +76,7 @@ public class Registrar_Generos extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Descripcion:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_Gen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -57,17 +87,42 @@ public class Registrar_Generos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb_Gen);
 
-        jButton1.setText("NEW");
+        Btn_New.setText("NEW");
+        Btn_New.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_NewActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("SAVE");
+        Btn_Save.setText("SAVE");
+        Btn_Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_SaveActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("DELETE");
+        Btn_Delete.setText("DELETE");
+        Btn_Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_DeleteActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("EDIT");
+        Btn_Edit.setText("EDIT");
+        Btn_Edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_EditActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("SEARCH");
+        Btn_Search.setText("SEARCH");
+        Btn_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_SearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,7 +134,7 @@ public class Registrar_Generos extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
+                            .addComponent(Btn_New)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,16 +144,16 @@ public class Registrar_Generos extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(Btn_Save)
                                 .addGap(27, 27, 27)
-                                .addComponent(jButton3))
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3))
+                                .addComponent(Btn_Delete))
+                            .addComponent(txtCodigo)
+                            .addComponent(txtName)
+                            .addComponent(txtDes))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4)
-                            .addComponent(jButton5))))
+                            .addComponent(Btn_Edit)
+                            .addComponent(Btn_Search))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,22 +162,22 @@ public class Registrar_Generos extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_Search))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(Btn_New)
+                    .addComponent(Btn_Save)
+                    .addComponent(Btn_Delete)
+                    .addComponent(Btn_Edit))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -131,20 +186,73 @@ public class Registrar_Generos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Btn_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_NewActionPerformed
+        // TODO add your handling code here:
+        txtCodigo.setText(genController.GetCorrelativoController()+"");
+        txtName.setText("");
+        txtDes.setText("");
+    }//GEN-LAST:event_Btn_NewActionPerformed
+
+    private void Btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SaveActionPerformed
+        // TODO add your handling code here:
+        Generos objGen = new Generos();
+        objGen.setId_Genero(Integer.parseInt(this.txtCodigo.getText()));
+        objGen.setNombre_gen(this.txtName.getText());
+        objGen.setDes_gen(this.txtDes.getText());
+        
+        genController.InsertarLibrosController(objGen);
+        JOptionPane.showMessageDialog(this, "Registro correcto");
+        ListarTabla();
+    }//GEN-LAST:event_Btn_SaveActionPerformed
+
+    private void Btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DeleteActionPerformed
+        // TODO add your handling code here:
+        Generos objGen = new Generos();
+        objGen.setId_Genero(Integer.parseInt(this.txtCodigo.getText()));
+        genController.EliminarLibrosController(objGen);
+        
+        JOptionPane.showMessageDialog(this, "¿Deseas borrar registro?");
+    }//GEN-LAST:event_Btn_DeleteActionPerformed
+
+    private void Btn_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditActionPerformed
+        // TODO add your handling code here:
+       Generos objGen = new Generos();
+        objGen.setId_Genero(Integer.parseInt(this.txtCodigo.getText()));
+        objGen.setNombre_gen(this.txtName.getText());
+        objGen.setDes_gen(this.txtDes.getText());
+        
+        genController.ActualizarGenerosController(objGen);
+        JOptionPane.showMessageDialog(this, "Registro correcto");
+        ListarTabla();
+    }//GEN-LAST:event_Btn_EditActionPerformed
+
+    private void Btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SearchActionPerformed
+        // TODO add your handling code here:
+          List<Generos> lst = genController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
+        for(Generos x:lst){
+            this.txtName.setText(x.getNombre_gen());
+           // System.out.println("error 1");
+            this.txtDes.setText(x.getDes_gen());
+           
+            
+            
+        }
+    }//GEN-LAST:event_Btn_SearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton Btn_Delete;
+    private javax.swing.JButton Btn_Edit;
+    private javax.swing.JButton Btn_New;
+    private javax.swing.JButton Btn_Save;
+    private javax.swing.JButton Btn_Search;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable tb_Gen;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtDes;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }
