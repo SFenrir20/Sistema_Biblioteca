@@ -27,7 +27,7 @@ public class GenerosController {
         return null;
     }
      
-     public List<Generos> getLstLibrosController(){
+     public List<Generos> getLstGenerosController(){
         return new GenerosRepository().getAllGeneros();
     }
     

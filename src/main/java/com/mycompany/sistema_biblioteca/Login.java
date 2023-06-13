@@ -58,6 +58,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        txt_Password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

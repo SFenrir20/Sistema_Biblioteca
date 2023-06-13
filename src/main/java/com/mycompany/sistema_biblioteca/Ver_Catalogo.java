@@ -35,6 +35,11 @@ public class Ver_Catalogo extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setTitle("Catalogo");
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Autor", " " }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

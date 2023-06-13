@@ -47,7 +47,7 @@
                                   <Component id="txtCodigo" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="Spinner" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                                          <Component id="SpiV" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
                                           <Component id="txtAutor" min="-2" pref="148" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -106,7 +106,7 @@
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Spinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="SpiV" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -164,7 +164,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JSpinner" name="Spinner">
+    <Component class="javax.swing.JSpinner" name="SpiV">
     </Component>
     <Component class="javax.swing.JButton" name="Btn_Buscar">
       <Properties>

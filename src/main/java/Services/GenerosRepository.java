@@ -28,7 +28,7 @@ public class GenerosRepository implements IGeneros{
             while(rs.next()){
                 Generos objGen = new Generos();
                 objGen.setId_Genero(rs.getInt("Id_Generos"));
-                objGen.setNombre_gen(rs.getString("Nombre_Gen"));
+                objGen.setNombre_gen(rs.getString("Generos"));
                 
                 lst.add(objGen);
             }
@@ -49,9 +49,9 @@ public class GenerosRepository implements IGeneros{
              ResultSet rs = cs.executeQuery();
              while(rs.next()){
                  Generos obj = new Generos();
-                 obj.setId_Genero(rs.getInt("Id_Libro"));
-                 obj.setNombre_gen(rs.getString("Titulo"));
-                 obj.setDes_gen(rs.getString("Autor"));
+                 obj.setId_Genero(rs.getInt("Id_Generos"));
+                 obj.setNombre_gen(rs.getString("Nombre_Gen"));
+                 obj.setDes_gen(rs.getString("Des_Gen"));
                  
                  lstGen.add(obj);
                  System.out.println("paso los datos");

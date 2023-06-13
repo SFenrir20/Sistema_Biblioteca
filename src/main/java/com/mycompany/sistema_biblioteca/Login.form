@@ -110,6 +110,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txt_Password">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

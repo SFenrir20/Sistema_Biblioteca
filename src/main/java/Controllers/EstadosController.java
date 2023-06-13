@@ -4,10 +4,27 @@
  */
 package Controllers;
 
+import Model.Estados;
+import Services.EstadosRepository;
+import java.util.List;
+
 /**
  *
  * @author santi
  */
 public class EstadosController {
+    public List<Estados> GetAllEstadosController(){
+        return new EstadosRepository().GetAll();
+    }
+    
+    public Estados GetEstadosXNombre(String nom){
+        List<Estados> lst = GetAllEstadosController();
+        for(Estados est:lst){
+            if(est.getNombre_estados().equalsIgnoreCase(nom)){
+                return  est;
+            }
+        }
+        return null;
+    }
     
 }

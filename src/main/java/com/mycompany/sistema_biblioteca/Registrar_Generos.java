@@ -35,7 +35,7 @@ public class Registrar_Generos extends javax.swing.JInternalFrame {
     
     public void ListarTabla(){
         dtmGenero.setRowCount(0);
-        List<Generos> lst = genController.GetAllGenerosController();
+        List<Generos> lst = genController.getLstGenerosController();
         for (int i=0;i<lst.size();i++){
             Object[] vec = new Object[3];
             vec[0] = lst.get(i).getId_Genero();
@@ -69,6 +69,10 @@ public class Registrar_Generos extends javax.swing.JInternalFrame {
         txtName = new javax.swing.JTextField();
         txtDes = new javax.swing.JTextField();
         Btn_Search = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jLabel1.setText("Codigo:");
 
@@ -129,7 +133,7 @@ public class Registrar_Generos extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()

@@ -11,6 +11,7 @@ import Model.Libro;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +23,7 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
     private DefaultComboBoxModel Cbox = new DefaultComboBoxModel();
     private LibroController lController = new LibroController();
     private GenerosController GenController = new GenerosController();
+    private SpinnerNumberModel nm = new SpinnerNumberModel();
 
     /**
      * Creates new form Registar_Libros
@@ -31,7 +33,11 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
         LlenarTabla();
         LenaLista();
         CargarGeneros();
-        Spinner.getValue();  
+        nm.setMaximum(101);
+        nm.setMinimum(0);
+        nm.setStepSize(1);
+        SpiV.setModel(nm);
+        SpiV.getValue();  
     }
     
     public void CargarGeneros(){
@@ -87,7 +93,7 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
         txtTitulo = new javax.swing.JTextField();
         txtAutor = new javax.swing.JTextField();
         CboxGen = new javax.swing.JComboBox<>();
-        Spinner = new javax.swing.JSpinner();
+        SpiV = new javax.swing.JSpinner();
         Btn_Buscar = new javax.swing.JButton();
         Btn_Eliminar = new javax.swing.JButton();
         Btn_Editar = new javax.swing.JButton();
@@ -184,7 +190,7 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
                                     .addComponent(txtCodigo)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(SpiV, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
@@ -226,7 +232,7 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SpiV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_Eliminar)
@@ -246,9 +252,9 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
         txtCodigo.setText(lController.GetCorrelativoController()+"");
         txtTitulo.setText("");
         txtAutor.setText("");
-        Spinner.setValue(0);
+        SpiV.setValue(0);
         
-        System.out.println(Spinner.getValue().toString());
+        System.out.println(SpiV.getValue().toString());
     }//GEN-LAST:event_Btn_NewActionPerformed
 
     private void Btn_grabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_grabarActionPerformed
@@ -258,7 +264,7 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
              this.txtTitulo.setText(x.getTitulo());
              this.txtAutor.setText(x.getAutor());
              this.CboxGen.setSelectedItem(x.getGenero());
-             this.Spinner.setValue(x.getNumCopias());
+             this.SpiV.setValue(x.getNumCopias());
          }
     }//GEN-LAST:event_Btn_grabarActionPerformed
 
@@ -290,7 +296,7 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
             this.txtTitulo.setText(x.getTitulo());
             this.CboxGen.setSelectedItem(x.getGenero());
             this.txtAutor.setText(x.getGenero());
-            this.Spinner.setValue(x.toString());
+            this.SpiV.setValue(x.toString());
         }
     }//GEN-LAST:event_Btn_BuscarActionPerformed
 
@@ -302,7 +308,7 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
     private javax.swing.JButton Btn_New;
     private javax.swing.JButton Btn_grabar;
     private javax.swing.JComboBox<String> CboxGen;
-    private javax.swing.JSpinner Spinner;
+    private javax.swing.JSpinner SpiV;
     private javax.swing.JTable TB_Libros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -26,7 +26,7 @@ public class CategoriaRepository implements ICategoria{
             while(rs.next()){
                 Categorias_US objCat = new Categorias_US();
                 objCat.setId_Categoria(rs.getInt("Id_Categoria"));
-                objCat.setNombre_Categoria(rs.getString("Nombre_Categoria"));
+                objCat.setNombre_Categoria(rs.getString("Nombres"));
                 
                 lstCat.add(objCat);
             }

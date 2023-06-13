@@ -4,10 +4,13 @@
  */
 package Services;
 
+import Model.Estados;
+import java.util.List;
+
 /**
  *
  * @author santi
  */
 public interface IEstados {
-    
+    List<Estados> GetAll();
 }
