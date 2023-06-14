@@ -34,7 +34,12 @@ public class UsuarioController {
         return new RusuarioRepository().getCorrelativo();
     }
     
-    public List<Usuario> BuscarCodigoController(int codigo){
+    public Usuario BuscarCodigoController(int codigo){
         return new RusuarioRepository().BuscarUsuarioXCodigo(codigo);
     }
+    
+    public List<Usuario> GetLstAllAlumnosController(){
+        return new RusuarioRepository().GetAllAlumos();
+    }
+    
 }

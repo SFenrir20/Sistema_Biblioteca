@@ -4,6 +4,7 @@
  */
 package Services;
 
+import Model.Sha256;
 import Model.Usuario;
 import Util.Conexion;
 import java.sql.CallableStatement;
@@ -53,7 +54,7 @@ public class RusuarioRepository implements IRusuario {
             PreparedStatement ps = Conexion.ObtenerConexion().prepareCall("{CALL InsertarUs(?,?,?,?,?,?)}");
             ps.setInt(1, us.getCodigo());
             ps.setString(2, us.getNombre());
-            ps.setString(3, us.getContraseña());
+            ps.setString(3, Sha256.sha256(us.getContraseña()));
             ps.setString(4, us.getCategoria());
             ps.setString(5, us.getEmail());
             ps.setInt(6, us.getId_Cat());
@@ -82,7 +83,7 @@ public class RusuarioRepository implements IRusuario {
              System.out.println("Error 1");
             ps.setString(2, us.getNombre());
              System.out.println("Error 2");
-            ps.setString(3, us.getContraseña());
+            ps.setString(3, Sha256.sha256(us.getContraseña()));
              System.out.println("Error 3");
             ps.setString(4, us.getCategoria());
              System.out.println("Error 4");
@@ -114,14 +115,14 @@ public class RusuarioRepository implements IRusuario {
     }
 
     @Override
-    public List<Usuario> BuscarUsuarioXCodigo(int codigo) {
+    public Usuario BuscarUsuarioXCodigo(int codigo) {
         try {
-            List<Usuario> lstUsuario = new ArrayList<>();
+            //List<Usuario> lstUsuario = new ArrayList<>();
             CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL BuscarUsuario(?)}");
             cs.setInt(1, codigo);
             ResultSet rs = cs.executeQuery();
+            Usuario objUsuario = new Usuario();
             while(rs.next()){
-                Usuario objUsuario = new Usuario();
                 objUsuario.setCodigo(rs.getInt("Id_Usuario"));
                 objUsuario.setNombre(rs.getString("nombre"));
                 objUsuario.setContraseña(rs.getString("password"));
@@ -129,16 +130,42 @@ public class RusuarioRepository implements IRusuario {
                 objUsuario.setEmail(rs.getString("Email"));
              //   objUsuario.setId_Cat(rs.getInt("Categoria_US_Id_Categoria"));
                 
-                lstUsuario.add(objUsuario);
-                System.out.println("paso este dato");
+            //    lstUsuario.add(objUsuario);
+                System.out.println("paso este dato usuario");
                 break;
             }
             Conexion.ObtenerConexion().close();
             rs.close();
-            return lstUsuario;
+           // return lstUsuario;
+           return objUsuario;
         } catch (Exception ex) {
             System.out.println("Error Bucar por codigo");
             ex.getMessage();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Usuario> GetAllAlumos() {
+         try {
+            List<Usuario> lstus = new ArrayList<>();
+            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL ListarAlumnos}");
+            ResultSet  rs = cs.executeQuery();
+            while(rs.next()){
+                Usuario obj = new Usuario();
+                obj.setCodigo(rs.getInt("Id_Usuario"));
+                obj.setNombre(rs.getString("nombre"));
+                obj.setCategoria(rs.getString("Categoria"));
+                obj.setEmail(rs.getString("Email"));
+                
+                lstus.add(obj);
+                System.out.println("el dato paso");
+            }
+            Conexion.ObtenerConexion().close();
+            rs.close();
+            return lstus;
+        } catch (Exception e) {
+            System.out.println("error al pasar los datos " + e.getMessage());
         }
         return null;
     }

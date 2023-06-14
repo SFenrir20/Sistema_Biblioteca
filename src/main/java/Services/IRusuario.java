@@ -16,6 +16,8 @@ public interface IRusuario {
     void addUsuarios(Usuario us);
     void removeUsuario(Usuario us);
     void updateUsuario(Usuario us);
-    List<Usuario> BuscarUsuarioXCodigo(int codigo);
+    Usuario BuscarUsuarioXCodigo(int codigo);
     int getCorrelativo();
+    
+    List<Usuario> GetAllAlumos();
 }

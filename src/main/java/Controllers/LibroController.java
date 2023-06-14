@@ -36,4 +36,18 @@ public class LibroController {
     public List<Libro> BuscarCodigoController(int codigo){
         return new LibroRepository().BuscarLibroXCodigo(codigo);
     }
+    
+    public List<Libro> GetNomLibrosController(){
+        return new LibroRepository().GetNomLibros();
+    }
+    
+    public Libro GetLibrosXnombres(String nom){
+        List<Libro> lst = getLstLibrosController();
+        for(Libro nLibro:lst){
+         if(nLibro.getTitulo().equalsIgnoreCase(nom)){
+             return nLibro;
+         }   
+        }
+        return null;
+    }
 }

@@ -259,25 +259,35 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
 
     private void Btn_grabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_grabarActionPerformed
         // TODO add your handling code here:
-         List<Libro> lst = lController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
-         for(Libro x:lst){
-             this.txtTitulo.setText(x.getTitulo());
-             this.txtAutor.setText(x.getAutor());
-             this.CboxGen.setSelectedItem(x.getGenero());
-             this.SpiV.setValue(x.getNumCopias());
-         }
+        Generos objGe = GenController.GetGenerosXNombre(GetSelectedGen());
+        Libro objLibro = new Libro();
+        objLibro.setCodigo(Integer.parseInt(this.txtCodigo.getText()));
+        objLibro.setTitulo(this.txtTitulo.getText());
+        objLibro.setGenero(objGe.getNombre_gen());
+        objLibro.setAutor(this.txtAutor.getText());
+        objLibro.setNumCopias((int) this.SpiV.getValue());
+        objLibro.setId_Genero(objGe.getId_Genero());
+        
+        lController.InsertarLibrosController(objLibro);
+        JOptionPane.showMessageDialog(this,"Registro grabado Satisfactorio");
+        LenaLista();
+         
     }//GEN-LAST:event_Btn_grabarActionPerformed
 
     private void Btn_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditarActionPerformed
         // TODO add your handling code here:
-        Generos objGen = GenController.GetCategoriaXNombre(GetSelectedGen());
+        Generos objGen = GenController.GetGenerosXNombre(GetSelectedGen());
         Libro objLi = new Libro();
         objLi.setCodigo(Integer.parseInt(this.txtCodigo.getText()));
         objLi.setTitulo(this.txtTitulo.getText());
         objLi.setAutor(this.txtAutor.getText());
         objLi.setGenero(objGen.getNombre_gen());
-       // objLi.setNumCopias(this.Spinner.getNextValue().toString());
+        objLi.setNumCopias((int) this.SpiV.getValue());
         
+        lController.ActualizarLibrosController(objLi);
+        JOptionPane.showMessageDialog(this,"Registro Actualizado Satisfactorio");
+        LenaLista();
+         
     }//GEN-LAST:event_Btn_EditarActionPerformed
 
     private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
@@ -295,8 +305,8 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
         for(Libro x:lst){
             this.txtTitulo.setText(x.getTitulo());
             this.CboxGen.setSelectedItem(x.getGenero());
-            this.txtAutor.setText(x.getGenero());
-            this.SpiV.setValue(x.toString());
+            this.txtAutor.setText(x.getAutor());
+            this.SpiV.setValue(x.getNumCopias());
         }
     }//GEN-LAST:event_Btn_BuscarActionPerformed
 

@@ -251,6 +251,7 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
         uController.EliminarUsController(objUsuario);
         
         JOptionPane.showMessageDialog(this, "¿Deseas borrar registro?");
+            LlenaLista();
     }//GEN-LAST:event_Btn_EliminarActionPerformed
 
     private void Btn_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_NewActionPerformed
@@ -260,6 +261,9 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
         txtContraseña.setText("");
         //txtCategoria.setText("");
         txtEmail.setText("");
+        
+         txtCodigo.setEditable(true);
+         txtContraseña.setEditable(true);
     }//GEN-LAST:event_Btn_NewActionPerformed
 
     private void Btn_GrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GrabarActionPerformed
@@ -280,12 +284,13 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
 
     private void Btn_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditarActionPerformed
         // TODO add your handling code here:
+        Usuario old = uController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
         Categorias_US objCats = CatController.GetCategoriaXNombre(GetSelectedCat());
         Usuario objUS = new Usuario();
         objUS.setCodigo(Integer.parseInt(this.txtCodigo.getText()));
         objUS.setNombre(this.txtNombre.getText());
         objUS.setCategoria(objCats.getNombre_Categoria());
-        objUS.setContraseña(this.txtContraseña.getText());
+        objUS.setContraseña(old.getContraseña());
         objUS.setEmail(this.txtEmail.getText());
         objUS.setId_Cat(objCats.getId_Categoria());
         
@@ -296,17 +301,18 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
 
     private void Btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BuscarActionPerformed
         // TODO add your handling code here:
-        List<Usuario> lst = uController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
-        for(Usuario x:lst){
-            this.txtNombre.setText(x.getNombre());
+        Usuario objUs = uController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
+        
+            this.txtNombre.setText(objUs.getNombre());
            // System.out.println("error 1");
-            this.CboxCategoria.setSelectedItem(x.getCategoria());
+            this.CboxCategoria.setSelectedItem(objUs.getCategoria());
            // System.out.println("error 2");
-            this.txtContraseña.setText(x.getContraseña());
-            this.txtEmail.setText(x.getEmail());
+            this.txtContraseña.setText("");
+            this.txtEmail.setText(objUs.getEmail());
             
+            txtCodigo.setEditable(false);
+            txtContraseña.setEditable(false);
             
-        }
     }//GEN-LAST:event_Btn_BuscarActionPerformed
 
     private void CboxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CboxCategoriaActionPerformed

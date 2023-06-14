@@ -125,7 +125,7 @@ public class GenerosRepository implements IGeneros{
             rs.close();
             return lst;
         } catch (Exception e) {
-             System.out.println("Error Bucar por codigo");
+             System.out.println("Error Bucar por codigo Generos");
              e.getMessage();
         }
         return null;

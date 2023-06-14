@@ -17,7 +17,7 @@ public class GenerosController {
         return new GenerosRepository().GetAll();
     }
     
-     public Generos GetCategoriaXNombre(String nom){
+     public Generos GetGenerosXNombre(String nom){
         List<Generos> lst = GetAllGenerosController();
         for(Generos gen:lst){
             if(gen.getNombre_gen().equalsIgnoreCase(nom)){

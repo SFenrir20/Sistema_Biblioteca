@@ -49,6 +49,11 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("INGRESE SU CONTRASEÑA");
 
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
 
         Btn_Ingresar.setText("INGRESAR");
         Btn_Ingresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -124,6 +129,20 @@ public class Login extends javax.swing.JFrame {
        //holisss
         
     }//GEN-LAST:event_Btn_IngresarActionPerformed
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        
+        //isLetter para numeros
+        //isDigit para letras
+        
+        if(Character.isDigit(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresa Solo Letras");
+        }
+    }//GEN-LAST:event_txtUsuarioKeyTyped
 
     /**
      * @param args the command line arguments

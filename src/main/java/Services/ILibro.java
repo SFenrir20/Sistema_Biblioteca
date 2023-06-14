@@ -18,4 +18,7 @@ public interface ILibro {
     void updateLibro(Libro li);
     List<Libro> BuscarLibroXCodigo(int codigo);
     int NewLibro();
+    
+    List<Libro> GetNomLibros();
+    
 }

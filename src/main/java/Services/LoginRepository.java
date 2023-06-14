@@ -4,6 +4,7 @@
  */
 package Services;
 
+import Model.Sha256;
 import Model.Usuario;
 import Util.Conexion;
 import java.sql.CallableStatement;
@@ -22,7 +23,7 @@ public class LoginRepository implements ILogin{
         try {
             CallableStatement ct = Conexion.ObtenerConexion().prepareCall("{Call verificarCredenciales(?,?)}");
             ct.setString(1, username);
-            ct.setString(2, password);
+            ct.setString(2,Sha256.sha256(password));
             rs = ct.executeQuery();
             if(rs.next()){
                 return true;
