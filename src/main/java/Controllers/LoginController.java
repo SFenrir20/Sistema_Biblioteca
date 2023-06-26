@@ -4,6 +4,7 @@
  */
 package Controllers;
 
+import Model.Usuario;
 import Services.LoginRepository;
 
 /**
@@ -12,8 +13,8 @@ import Services.LoginRepository;
  */
 public class LoginController {
     
-    public boolean RealizarLogin(String username, String password){
-       return new LoginRepository().verificarCredenciales(username, password);
+    public boolean RealizarLogin(Usuario user){
+       return new LoginRepository().verificarCredenciales(user);
    
     }
 }

@@ -118,6 +118,8 @@ public class Registar_Libros extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Numero de Copias:");
 
+        CboxGen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona......." }));
+
         Btn_Buscar.setText("BUSCAR");
         Btn_Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

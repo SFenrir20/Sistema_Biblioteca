@@ -14,18 +14,19 @@ public class Transaccion {
     
     private int codigo;
     private String Estado;
-    private Date Fecha_Prestamo;
-    private Date Fecha_Devolucion;
-    private Date Fecha_Reserva;
+    private String Fecha_Prestamo;
+    private String Fecha_Devolucion;
+    private String Fecha_Reserva;
     private double multa;
     private int Id_Libro;
     private int Id_Usuario;
     private int Id_Estados;
+    private int Num_Copias_Libro;
 
     public Transaccion() {
     }
 
-    public Transaccion(int codigo, String Estado, Date Fecha_Prestamo, Date Fecha_Devolucion, Date Fecha_Reserva, double multa, int Id_Libro, int Id_Usuario,int Id_Estados) {
+    public Transaccion(int codigo, String Estado, String Fecha_Prestamo, String Fecha_Devolucion, String  Fecha_Reserva, double multa, int Id_Libro, int Id_Usuario,int Id_Estados, int Num_Copias_Libro) {
         this.codigo = codigo;
         this.Estado = Estado;
         this.Fecha_Prestamo = Fecha_Prestamo;
@@ -34,7 +35,8 @@ public class Transaccion {
         this.multa = multa;
         this.Id_Libro = Id_Libro;
         this.Id_Usuario = Id_Usuario;
-        this.Id_Estados = this.Id_Estados;
+        this.Id_Estados = Id_Estados;
+        this.Num_Copias_Libro = Num_Copias_Libro;
     }
 
     public int getCodigo() {
@@ -53,27 +55,27 @@ public class Transaccion {
         this.Estado = Estado;
     }
 
-    public Date getFecha_Prestamo() {
+    public String getFecha_Prestamo() {
         return Fecha_Prestamo;
     }
 
-    public void setFecha_Prestamo(Date Fecha_Prestamo) {
+    public void setFecha_Prestamo(String Fecha_Prestamo) {
         this.Fecha_Prestamo = Fecha_Prestamo;
     }
 
-    public Date getFecha_Devolucion() {
+    public String getFecha_Devolucion() {
         return Fecha_Devolucion;
     }
 
-    public void setFecha_Devolucion(Date Fecha_Devolucion) {
+    public void setFecha_Devolucion(String Fecha_Devolucion) {
         this.Fecha_Devolucion = Fecha_Devolucion;
     }
 
-    public Date getFecha_Reserva() {
+    public String getFecha_Reserva() {
         return Fecha_Reserva;
     }
 
-    public void setFecha_Reserva(Date Fecha_Reserva) {
+    public void setFecha_Reserva(String Fecha_Reserva) {
         this.Fecha_Reserva = Fecha_Reserva;
     }
 
@@ -108,7 +110,14 @@ public class Transaccion {
     public void setId_Estados(int Id_Estados) {
         this.Id_Estados = Id_Estados;
     }
-    
+
+    public int getNum_Copias_Libro() {
+        return Num_Copias_Libro;
+    }
+
+    public void setNum_Copias_Libro(int Num_Copias_Libro) {
+        this.Num_Copias_Libro = Num_Copias_Libro;
+    }
     
    
 }

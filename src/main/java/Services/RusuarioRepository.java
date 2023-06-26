@@ -169,5 +169,29 @@ public class RusuarioRepository implements IRusuario {
         }
         return null;
     }
+
+    @Override
+    public int GerIdXNombreUsuario(String nom) {
+        try {
+             CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL GetIdXNom(?)}");
+             cs.setString(1, nom);
+             ResultSet rs = cs.executeQuery();
+             Usuario user = new Usuario();
+             while(rs.next()){
+             user.setCodigo(rs.getInt("Id_Usuario"));
+             
+             System.out.println("paso este dato Objusuario");
+             break;
+             }
+             Conexion.ObtenerConexion().close();
+             rs.close();
+             return user.getCodigo();
+             }
+        catch (Exception e) {
+             System.out.println("Error Bucar por nombre");
+             e.getMessage();
+        }
+        return 0;
+    }
     
 }

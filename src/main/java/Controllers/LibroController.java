@@ -50,4 +50,17 @@ public class LibroController {
         }
         return null;
     }
+    
+    public List<Libro> GetNumLibrosController(String nomLi){
+        return new LibroRepository().GetNumLibros(nomLi);
+    }
+    
+    public List<Libro> GetAutoresController(){
+        return new LibroRepository().GetAutor();
+    }
+    
+    public List<Libro> GetGenerosController(){
+        return new LibroRepository().GetCat();
+    }
+    
 }

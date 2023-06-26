@@ -4,11 +4,19 @@
  */
 package Services;
 
+import Model.Transaccion;
+import java.util.List;
+
 /**
  *
  * @author santi
  */
 public interface ITransaccion {
+    
+    List<Transaccion> getAllTransaccions();
+    void addTransaccionReseva(Transaccion transaccion);
+    void addTransaccionPrestamo(Transaccion transaccion);
+    void addTransaccionDebolucion(Transaccion transaccion);
     
     int GetCorrelativo();
     

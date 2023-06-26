@@ -4,18 +4,42 @@
  */
 package com.mycompany.sistema_biblioteca;
 
+import Model.Usuario;
+
 /**
  *
  * @author santi
  */
 public class Principall extends javax.swing.JFrame {
-
+    Usuario us;
     /**
      * Creates new form Principall
      */
     public Principall() {
         initComponents();
     }
+
+    public Principall(Usuario us) {
+        initComponents();
+        this.us = us;
+        switch(us.getId_Cat()){
+            case 1:
+                break;
+            case 2:
+                Jedit.setVisible(false);
+                break;
+            case 3:
+                Jadmin.setVisible(false);
+                Jlibros.setVisible(false);
+                Jedit.setVisible(false);
+                opTramites.setVisible(false);
+                Ver_Debolucion.setVisible(false);
+                opHistorial.setVisible(false);
+                        
+                break;
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,16 +52,17 @@ public class Principall extends javax.swing.JFrame {
 
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        Jadmin = new javax.swing.JMenu();
         opRegistrarUsuario = new javax.swing.JMenuItem();
-        Libros = new javax.swing.JMenu();
+        Jlibros = new javax.swing.JMenu();
         opRegistrarLibros = new javax.swing.JMenuItem();
         opGeneros = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        Jtrans = new javax.swing.JMenu();
         opTramites = new javax.swing.JMenuItem();
+        Ver_Debolucion = new javax.swing.JMenuItem();
         opCatalogo = new javax.swing.JMenuItem();
         opHistorial = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
+        Jedit = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
 
@@ -58,51 +83,60 @@ public class Principall extends javax.swing.JFrame {
             .addGap(0, 1080, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Admin");
+        Jadmin.setText("Admin");
 
-        opRegistrarUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        opRegistrarUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         opRegistrarUsuario.setText("Registrar Usuarios");
         opRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opRegistrarUsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(opRegistrarUsuario);
+        Jadmin.add(opRegistrarUsuario);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(Jadmin);
 
-        Libros.setText("Libros");
+        Jlibros.setText("Libros");
 
-        opRegistrarLibros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        opRegistrarLibros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         opRegistrarLibros.setText("Registrar Libros");
         opRegistrarLibros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opRegistrarLibrosActionPerformed(evt);
             }
         });
-        Libros.add(opRegistrarLibros);
+        Jlibros.add(opRegistrarLibros);
 
-        opGeneros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        opGeneros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         opGeneros.setText("Registrar Generos");
         opGeneros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opGenerosActionPerformed(evt);
             }
         });
-        Libros.add(opGeneros);
+        Jlibros.add(opGeneros);
 
-        jMenuBar1.add(Libros);
+        jMenuBar1.add(Jlibros);
 
-        jMenu3.setText("Transaccion");
+        Jtrans.setText("Transaccion");
 
-        opTramites.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        opTramites.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         opTramites.setText("Tramites");
         opTramites.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opTramitesActionPerformed(evt);
             }
         });
-        jMenu3.add(opTramites);
+        Jtrans.add(opTramites);
+
+        Ver_Debolucion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        Ver_Debolucion.setText("Debolucion");
+        Ver_Debolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Ver_DebolucionActionPerformed(evt);
+            }
+        });
+        Jtrans.add(Ver_Debolucion);
 
         opCatalogo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         opCatalogo.setText("Catalogo");
@@ -111,7 +145,7 @@ public class Principall extends javax.swing.JFrame {
                 opCatalogoActionPerformed(evt);
             }
         });
-        jMenu3.add(opCatalogo);
+        Jtrans.add(opCatalogo);
 
         opHistorial.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         opHistorial.setText("Historial");
@@ -120,11 +154,11 @@ public class Principall extends javax.swing.JFrame {
                 opHistorialActionPerformed(evt);
             }
         });
-        jMenu3.add(opHistorial);
+        Jtrans.add(opHistorial);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(Jtrans);
 
-        jMenu7.setText("Edit");
+        Jedit.setText("Edit");
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         jMenuItem5.setText("edit_estados");
@@ -133,13 +167,13 @@ public class Principall extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu7.add(jMenuItem5);
+        Jedit.add(jMenuItem5);
 
         jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem6.setText("edit_categorias");
-        jMenu7.add(jMenuItem6);
+        Jedit.add(jMenuItem6);
 
-        jMenuBar1.add(jMenu7);
+        jMenuBar1.add(Jedit);
 
         setJMenuBar(jMenuBar1);
 
@@ -151,7 +185,9 @@ public class Principall extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -205,6 +241,13 @@ public class Principall extends javax.swing.JFrame {
         verCat.show();
     }//GEN-LAST:event_opCatalogoActionPerformed
 
+    private void Ver_DebolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ver_DebolucionActionPerformed
+        // TODO add your handling code here:
+        Registrar_Debolucion RB = new Registrar_Debolucion();
+        escritorio.add(RB);
+        RB.show();
+    }//GEN-LAST:event_Ver_DebolucionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -241,11 +284,12 @@ public class Principall extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Libros;
+    private javax.swing.JMenu Jadmin;
+    private javax.swing.JMenu Jedit;
+    private javax.swing.JMenu Jlibros;
+    private javax.swing.JMenu Jtrans;
+    private javax.swing.JMenuItem Ver_Debolucion;
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

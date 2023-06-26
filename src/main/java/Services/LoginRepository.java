@@ -18,15 +18,21 @@ import java.sql.Types;
 public class LoginRepository implements ILogin{
 
     @Override
-    public boolean verificarCredenciales(String username, String password) {
+    public boolean verificarCredenciales(Usuario user) {
         ResultSet rs= null;
         try {
-            CallableStatement ct = Conexion.ObtenerConexion().prepareCall("{Call verificarCredenciales(?,?)}");
-            ct.setString(1, username);
-            ct.setString(2,Sha256.sha256(password));
+            CallableStatement ct = Conexion.ObtenerConexion().prepareCall("{Call GetUsuarioXNom(?)}");
+            ct.setString(1,user.getNombre());
             rs = ct.executeQuery();
             if(rs.next()){
-                return true;
+                if(user.getContraseña().equals(rs.getString("password"))){
+                    user.setCodigo(rs.getInt("Id_Usuario"));
+                    user.setCategoria(rs.getString("Categoria"));
+                    user.setEmail(rs.getString("Email"));
+                    user.setId_Cat(rs.getInt("Categoria_Us_Id_Categoria"));
+                    return true;
+                }
+                return false;
             }
             Conexion.ObtenerConexion().close();
         } catch (Exception e) {

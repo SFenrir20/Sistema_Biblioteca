@@ -5,6 +5,8 @@
 package com.mycompany.sistema_biblioteca;
 
 import Controllers.LoginController;
+import Model.Sha256;
+import Model.Usuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -113,14 +115,16 @@ public class Login extends javax.swing.JFrame {
 
     private void Btn_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_IngresarActionPerformed
         // TODO add your handling code here:
-        String username = txtUsuario.getText();
+        Usuario usu = new Usuario();
+        usu.setNombre(txtUsuario.getText());
         String password = new String(txt_Password.getPassword());
+        usu.setContraseña(Sha256.sha256(password));
         
         LoginController loginController = new LoginController();
-        boolean credencialesValidas = loginController.RealizarLogin(username, password);
+        boolean credencialesValidas = loginController.RealizarLogin(usu);
         
         if (credencialesValidas){
-            Principall principall = new Principall();
+            Principall principall = new Principall(usu);
             principall.setVisible(true);
             this.dispose();//Cierra el frm de login
         }else{

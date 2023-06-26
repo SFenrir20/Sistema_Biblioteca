@@ -156,5 +156,72 @@ public class LibroRepository implements ILibro{
         }
         return null;
     }
-    
+
+    @Override
+    public List<Libro> GetNumLibros(String NomLi) {
+        try {
+            List<Libro> lst = new ArrayList<>();
+            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL NumLibrosxNom(?)}");
+            cs.setString(1, NomLi);
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                Libro obj = new Libro();
+                obj.setNumCopias(rs.getInt("Num_Copias"));
+                
+                lst.add(obj);
+            }
+            Conexion.ObtenerConexion().close();
+            rs.close();
+            return lst;
+        } catch (Exception e) {
+             System.out.println("error aqui "+ e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public List<Libro> GetAutor() {
+        try {
+            List<Libro> lst = new ArrayList<>();
+            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL ListarAutor}");
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                Libro obj = new Libro();
+                obj.setCodigo(rs.getInt("Id_libro"));
+                obj.setAutor(rs.getString("Autores"));
+                
+                lst.add(obj);
+            }
+            Conexion.ObtenerConexion().close();
+            rs.close();
+            return lst;
+        } catch (Exception e) {
+            System.out.println("Error al listar autores" + e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public List<Libro> GetCat() {
+        try {
+            List<Libro> lst = new ArrayList<>();
+            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL ListarCatLibro}");
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                Libro obj = new Libro();
+                obj.setCodigo(rs.getInt("Id_libro"));
+                obj.setGenero(rs.getString("Cat_Libro"));
+                
+                lst.add(obj);
+            }
+            Conexion.ObtenerConexion().close();
+            rs.close();
+            return lst;
+        } catch (Exception e) {
+            System.out.println("Error al listar libros Cat" + e.getMessage());
+        }
+        return null;
+    }
+
+ 
 }

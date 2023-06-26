@@ -8,6 +8,7 @@ import Controllers.CategoriaController;
 import Controllers.UsuarioController;
 import Model.Categorias_US;
 import Model.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -156,6 +157,7 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Codigo:");
 
+        CboxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona.........." }));
         CboxCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CboxCategoriaActionPerformed(evt);
@@ -278,8 +280,35 @@ public class Registar_Usuarios extends javax.swing.JInternalFrame {
         objUsuario.setId_Cat(objCat.getId_Categoria());
         
         uController.InsertarUsController(objUsuario);
-        JOptionPane.showMessageDialog(this,"Registro grabado Satisfactorio");
-        LlenaLista();
+        Object selectItem = CboxCategoria.getSelectedItem();
+        
+        List<String> camposVacios = new ArrayList<>();
+       // camposVacios.clear();
+        if(txtCodigo.getText().isEmpty()){
+            camposVacios.add("txtCodigo");
+        }
+        if(txtNombre.getText().isEmpty()){
+            camposVacios.add("txtNombre");
+        }
+        if(selectItem == null){
+            camposVacios.add("CboxCategoria");
+        }
+        if(camposVacios.isEmpty()){
+              JOptionPane.showMessageDialog(this,"Registro grabado Satisfactorio");
+              LlenaLista();
+        }
+        else{
+            String mensaje = "Los siguientes campos están vacíos:\n";
+            for(String campo:camposVacios){
+                mensaje += campo + "\n";    
+            }
+            JOptionPane.showMessageDialog(null, mensaje);
+        }   
+        
+        
+      
+        
+        
     }//GEN-LAST:event_Btn_GrabarActionPerformed
 
     private void Btn_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditarActionPerformed

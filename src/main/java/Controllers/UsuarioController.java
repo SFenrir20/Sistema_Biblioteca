@@ -42,4 +42,19 @@ public class UsuarioController {
         return new RusuarioRepository().GetAllAlumos();
     }
     
+    public Usuario GetUsuariosXCategoria(String alum){
+        List<Usuario> lst = GetLstAllAlumnosController();
+        for(Usuario user:lst){
+            if(user.getCategoria().equalsIgnoreCase(alum)){
+                return user;
+            }
+        }
+        return null;
+    }
+    
+    public int GetUsuarioXId(String nom){
+        return  new RusuarioRepository().GerIdXNombreUsuario(nom);
+    }
+     
+    
 }

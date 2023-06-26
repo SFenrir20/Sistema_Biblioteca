@@ -4,12 +4,14 @@
  */
 package Services;
 
+import Model.Usuario;
+
 /**
  *
  * @author santi
  */
 public interface ILogin {
     
-    boolean verificarCredenciales (String username, String password);
+    boolean verificarCredenciales (Usuario user);
     
 }

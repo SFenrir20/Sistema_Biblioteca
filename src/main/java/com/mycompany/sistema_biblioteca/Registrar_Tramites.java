@@ -8,7 +8,11 @@ import Controllers.LibroController;
 import Controllers.TransaccionController;
 import Controllers.UsuarioController;
 import Model.Libro;
+import Model.Transaccion;
 import Model.Usuario;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
@@ -22,12 +26,12 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
          private LibroController LiController = new LibroController();
          private UsuarioController UsController = new UsuarioController();
          private TransaccionController TraController = new TransaccionController();
+       
     /**
      * Creates new form Registrar_Tramites
      */
     public Registrar_Tramites() {
         initComponents();
-        TranGetCorrelativo();
         CargarAlumnos();
         CargarLibros();
     }
@@ -58,6 +62,7 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
         txtCodigoT.setText(TraController.GetCorrelativoTController()+"");
     }
     
+   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,6 +93,7 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
         btn_Reservar = new javax.swing.JButton();
         txt_FReserva = new javax.swing.JTextField();
         txt_FRecojo = new javax.swing.JTextField();
+        Btn_New = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -96,14 +102,16 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Libros:");
 
+        CboxLibros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona......." }));
         CboxLibros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CboxLibrosActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Usuario:");
+        jLabel2.setText("Alumnos:");
 
+        CboxAlu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona............" }));
         CboxAlu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CboxAluActionPerformed(evt);
@@ -147,6 +155,13 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
             }
         });
 
+        Btn_New.setText("Nuevo");
+        Btn_New.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_NewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,7 +172,9 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(txtCodigoT, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCodigoT, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(105, 105, 105)
+                        .addComponent(Btn_New))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -177,15 +194,15 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel6)
                                         .addComponent(btn_Registar))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(28, 28, 28)
-                                            .addComponent(txtNumCopias, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGap(22, 22, 22)
                                             .addComponent(txtFAPoxDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(15, 15, 15)
-                                            .addComponent(btn_Cancelar))))))
+                                            .addComponent(btn_Cancelar))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(28, 28, 28)
+                                            .addComponent(txtNumCopias, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(12, 12, 12)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -207,7 +224,8 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtCodigoT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigoT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_New))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -250,7 +268,7 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
                             .addComponent(txt_FRecojo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(52, 52, 52)
                         .addComponent(btn_Reservar)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -262,6 +280,20 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
 
     private void btn_RegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistarActionPerformed
         // TODO add your handling code here:
+        Libro objLi = LiController.GetLibrosXnombres(GetSelectedLibro());
+        int objUs = UsController.GetUsuarioXId(GetSelectedAlu());
+        Transaccion objTran = new Transaccion();
+        objTran.setCodigo(Integer.parseInt(this.txtCodigoT.getText()));
+        objTran.setId_Usuario(objUs);
+        objTran.setId_Libro(objLi.getCodigo());
+        objTran.setNum_Copias_Libro(1);
+        objTran.setFecha_Prestamo(this.txtFPrestamo.getText());
+        objTran.setFecha_Devolucion(this.txtFAPoxDevolucion.getText());   
+        objTran.setFecha_Reserva("");
+        objTran.setEstado("");
+        objTran.setId_Estados(2);
+    
+        TraController.AgregarTransaccionPrestamo(objTran);
     }//GEN-LAST:event_btn_RegistarActionPerformed
 
     private void txt_FReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_FReservaActionPerformed
@@ -270,14 +302,31 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
 
     private void CboxLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CboxLibrosActionPerformed
         // TODO add your handling code here:
-        
+      List<Libro> lst = LiController.GetNumLibrosController(GetSelectedLibro());
+      LocalDate fecha = LocalDate.now();
+      for(Libro x:lst){
+          this.txtNumCopias.setText(x.getNumCopias()+"");
+          this.txtFPrestamo.setText(fecha+"");
+          this.txtFAPoxDevolucion.setText(fecha.plusDays(14)+"");
+          this.txt_FReserva.setText(fecha+"");
+          this.txt_FRecojo.setText(fecha.plusDays(5)+"");
+          
+      }
     }//GEN-LAST:event_CboxLibrosActionPerformed
 
-    public void Correlativo() {
-       
-    }
+    private void Btn_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_NewActionPerformed
+        // TODO add your handling code here:
+         TranGetCorrelativo();
+         txtNumCopias.setText("");
+         txtFPrestamo.setText("");
+         txtFAPoxDevolucion.setText("");
+         txt_FReserva.setText("");
+         txt_FReserva.setText("");
+    }//GEN-LAST:event_Btn_NewActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_New;
     private javax.swing.JComboBox<String> CboxAlu;
     private javax.swing.JComboBox<String> CboxLibros;
     private javax.swing.JButton btn_Cancelar;

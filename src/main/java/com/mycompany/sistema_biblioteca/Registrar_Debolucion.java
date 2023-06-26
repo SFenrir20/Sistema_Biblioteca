@@ -4,17 +4,29 @@
  */
 package com.mycompany.sistema_biblioteca;
 
+import Controllers.UsuarioController;
+import Model.Usuario;
+import java.util.List;
+
 /**
  *
  * @author santi
  */
 public class Registrar_Debolucion extends javax.swing.JInternalFrame {
-
+    private UsuarioController usController = new UsuarioController();
     /**
      * Creates new form Registrar_Debolucion
      */
     public Registrar_Debolucion() {
         initComponents();
+        CargarAlumnos();
+    }
+    
+    public void CargarAlumnos(){
+        List<Usuario> lst = usController.GetLstAllAlumnosController();
+        for(Usuario item:lst){
+            this.jComboBox1.addItem(item.getNombre());
+        }
     }
 
     /**

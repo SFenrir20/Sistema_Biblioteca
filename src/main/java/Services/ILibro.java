@@ -20,5 +20,9 @@ public interface ILibro {
     int NewLibro();
     
     List<Libro> GetNomLibros();
+    List<Libro> GetAutor();
+    List<Libro> GetCat();
     
+    
+    List<Libro> GetNumLibros(String nomLi);
 }

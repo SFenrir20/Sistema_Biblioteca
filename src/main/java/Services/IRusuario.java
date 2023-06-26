@@ -19,5 +19,7 @@ public interface IRusuario {
     Usuario BuscarUsuarioXCodigo(int codigo);
     int getCorrelativo();
     
+    int GerIdXNombreUsuario(String nom);
+    
     List<Usuario> GetAllAlumos();
 }

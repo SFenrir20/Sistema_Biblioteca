@@ -16,4 +16,8 @@ public class TransaccionController {
     public int GetCorrelativoTController(){
         return new TransaccionRepository().GetCorrelativo();
     }
+    
+    public void AgregarTransaccionPrestamo(Transaccion trans){
+        new TransaccionRepository().addTransaccionPrestamo(trans);
+    }    
 }
