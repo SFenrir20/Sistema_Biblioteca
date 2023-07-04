@@ -20,4 +20,17 @@ public class TransaccionController {
     public void AgregarTransaccionPrestamo(Transaccion trans){
         new TransaccionRepository().addTransaccionPrestamo(trans);
     }    
+    
+    public Transaccion ObtenerTransaccionPorId(int id){
+        return new TransaccionRepository().transaccionPorId(id);
+    }
+    
+    public void ActualizarEstadoDeTransaccion(Transaccion trans){
+        new TransaccionRepository().updateEstadoTransaccion(trans);
+    }
+   
+    public Transaccion getTransaccionPorNombre(String nom){
+        return new TransaccionRepository().getTransaccionPorNombre(nom);
+    }
+    
 }

@@ -84,6 +84,11 @@ public class Principall extends javax.swing.JFrame {
         );
 
         Jadmin.setText("Admin");
+        Jadmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JadminMouseClicked(evt);
+            }
+        });
 
         opRegistrarUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         opRegistrarUsuario.setText("Registrar Usuarios");
@@ -171,6 +176,11 @@ public class Principall extends javax.swing.JFrame {
 
         jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem6.setText("edit_categorias");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         Jedit.add(jMenuItem6);
 
         jMenuBar1.add(Jedit);
@@ -247,6 +257,17 @@ public class Principall extends javax.swing.JFrame {
         escritorio.add(RB);
         RB.show();
     }//GEN-LAST:event_Ver_DebolucionActionPerformed
+
+    private void JadminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JadminMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JadminMouseClicked
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        Edit_Categoria EC = new Edit_Categoria();
+        escritorio.add(EC);
+        EC.show();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments

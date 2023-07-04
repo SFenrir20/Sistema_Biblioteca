@@ -97,6 +97,20 @@ public class RusuarioRepository implements IRusuario {
             System.out.println("error al pasar los datos " + e.getMessage());
         }
     }
+    
+    public void updateCategoriaUsuario(Usuario us) {
+        try {
+            PreparedStatement ps = Conexion.ObtenerConexion().prepareStatement("{CALL CambiarCat(?,?)}");
+            ps.setInt(1, us.getCodigo());
+             System.out.println("Error 1");
+            ps.setString(4, us.getCategoria());
+             System.out.println("Error 4");
+            ps.executeUpdate();
+             System.out.println("Error Aqui");
+        } catch (Exception e) {
+            System.out.println("error al pasar los datos " + e.getMessage());
+        }
+    }
 
     @Override
     public int getCorrelativo() {

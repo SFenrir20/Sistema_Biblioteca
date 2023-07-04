@@ -17,6 +17,10 @@ public interface ITransaccion {
     void addTransaccionReseva(Transaccion transaccion);
     void addTransaccionPrestamo(Transaccion transaccion);
     void addTransaccionDebolucion(Transaccion transaccion);
+    Transaccion transaccionPorId(int codigo);
+    void updateEstadoTransaccion(Transaccion transaccion);
+    Transaccion getTransaccionPorNombre(String nom);
+
     
     int GetCorrelativo();
     
