@@ -15,4 +15,11 @@ public interface ICategoria {
     
     List<Categorias_US> GetAll();
     
+    List<Categorias_US> getAllCategoria();
+    void addCategoria(Categorias_US gen);
+    void removeCategoria(Categorias_US gen);
+    void updateCategoria(Categorias_US gen);
+    List<Categorias_US> BuscarLibroXCodigo(int codigo);
+    int NewCategoria();
+    
 }

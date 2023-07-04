@@ -26,4 +26,27 @@ public class CategoriaController {
         }
         return null;
     }
+        public List<Categorias_US> getLstGenerosController(){
+        return new CategoriaRepository().getAllCategoria();
+    }
+    
+    public void InsertarLibrosController(Categorias_US gen){
+        new CategoriaRepository().addCategoria(gen);
+    }
+    
+    public void EliminarLibrosController(Categorias_US gen){
+        new CategoriaRepository().removeCategoria(gen);
+    }
+    
+    public void ActualizarGenerosController(Categorias_US gen){
+        new CategoriaRepository().updateCategoria(gen);
+    }
+    
+    public int GetCorrelativoController(){
+        return new CategoriaRepository().NewCategoria();
+    }
+    
+    public List<Categorias_US> BuscarCodigoController(int codigo){
+        return new CategoriaRepository().BuscarLibroXCodigo(codigo);
+    }
 }

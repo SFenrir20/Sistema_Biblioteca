@@ -5,10 +5,11 @@
 package com.mycompany.sistema_biblioteca;
 
 import Controllers.EstadosController;
-import Controllers.TransaccionController;
 import Model.Estados;
-import Model.Transaccion;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,20 +17,36 @@ import javax.swing.JOptionPane;
  */
 public class Edit_estados extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Edit_estados
-     */
-    
-    private TransaccionController tController = new TransaccionController();
-    private EstadosController estController = new EstadosController();
+    private DefaultTableModel dtmGenero = new DefaultTableModel();
+    private EstadosController EstController = new EstadosController();
+    private DefaultComboBoxModel Cbox = new DefaultComboBoxModel();
+  
     
     public Edit_estados() {
         initComponents();
+        llenarTabla();
+        ListarTabla();
+    }
+    
+      public void llenarTabla(){
+        dtmGenero.addColumn("Codigo");
+        dtmGenero.addColumn("Nombre Categoria");
+        dtmGenero.addColumn("Descripcion");
+    }
+       public void ListarTabla(){
+        dtmGenero.setRowCount(0);
+        List<Estados> lst = EstController.getLstGenerosController();
+        for (int i=0;i<lst.size();i++){
+            Object[] vec = new Object[3];
+            vec[0] = lst.get(i).getId_Estados();
+            vec[1] = lst.get(i).getNombre_estados();
+            vec[2] = lst.get(i).getDes_estados();
+            
+            dtmGenero.addRow(vec);
+        }
+        this.tb_Gen2.setModel(dtmGenero);
     }
 
-    public String GetSelectedCat(){
-        return CboxCategoria.getSelectedItem().toString();
-    }
 
     
     /**
@@ -41,161 +58,207 @@ public class Edit_estados extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BtnBuscar = new javax.swing.JButton();
+        Btn_Delete2 = new javax.swing.JButton();
+        Btn_Edit2 = new javax.swing.JButton();
         txtCodigo = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        txtName2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtDes2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        Aceptar = new javax.swing.JButton();
-        txtEstadoActual = new javax.swing.JTextField();
-        CboxCategoria = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        txtIdEstadoActual = new javax.swing.JTextField();
+        Btn_Search2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tb_Gen2 = new javax.swing.JTable();
+        Btn_New2 = new javax.swing.JButton();
+        Btn_Save2 = new javax.swing.JButton();
 
         setTitle("Editar Estados");
 
-        BtnBuscar.setText("Buscar");
-        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Delete2.setText("DELETE");
+        Btn_Delete2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBuscarActionPerformed(evt);
+                Btn_Delete2ActionPerformed(evt);
             }
         });
 
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Edit2.setText("EDIT");
+        Btn_Edit2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
+                Btn_Edit2ActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Id de transaccion");
+        jLabel1.setText("Codigo:");
 
-        jLabel3.setText("Estado Actual del Libro");
+        jLabel2.setText("Nombre:");
 
-        jLabel2.setText("Id de Estado Actualizado");
-
-        Aceptar.setText("Actualizar");
-        Aceptar.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Search2.setText("SEARCH");
+        Btn_Search2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AceptarActionPerformed(evt);
+                Btn_Search2ActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Id  del Estado Actual");
+        jLabel3.setText("Descripcion:");
+
+        tb_Gen2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tb_Gen2);
+
+        Btn_New2.setText("NEW");
+        Btn_New2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_New2ActionPerformed(evt);
+            }
+        });
+
+        Btn_Save2.setText("SAVE");
+        Btn_Save2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Save2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3))
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEstadoActual)
-                            .addComponent(CboxCategoria, 0, 163, Short.MAX_VALUE)
-                            .addComponent(txtIdEstadoActual)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BtnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
-                .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+            .addGap(0, 464, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Btn_New2)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3))))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(Btn_Save2)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(Btn_Delete2))
+                                .addComponent(txtCodigo)
+                                .addComponent(txtName2)
+                                .addComponent(txtDes2))
+                            .addGap(28, 28, 28)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Btn_Edit2)
+                                .addComponent(Btn_Search2))))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
-                .addComponent(BtnBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtEstadoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtIdEstadoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(CboxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Aceptar)
-                .addGap(34, 34, 34))
+            .addGap(0, 532, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Btn_Search2))
+                    .addGap(19, 19, 19)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(txtName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(20, 20, 20)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtDes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Btn_New2)
+                        .addComponent(Btn_Save2)
+                        .addComponent(Btn_Delete2)
+                        .addComponent(Btn_Edit2))
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
+    private void Btn_Delete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Delete2ActionPerformed
         // TODO add your handling code here:
-        Transaccion objUs = tController.ObtenerTransaccionPorId(Integer.parseInt(this.txtCodigo.getText()));
-        
-        this.txtEstadoActual.setText(objUs.getEstado());
-       // System.out.println("error 1");
-        this.CboxCategoria.setSelectedItem(objUs.getEstado());
-       // System.out.println("error 2");
-        this.txtIdEstadoActual.setText(String.valueOf(objUs.getId_Estados()));
+        Estados objGen = new Estados();
+        objGen.setId_Estados(Integer.parseInt(this.txtCodigo.getText()));
+        EstController.EliminarLibrosController(objGen);
 
-        txtCodigo.setEditable(false);
-        txtIdEstadoActual.setEditable(false);
-        txtEstadoActual.setEditable(false);
-            
-    
-    }//GEN-LAST:event_BtnBuscarActionPerformed
+        JOptionPane.showMessageDialog(this, "¿Deseas borrar registro?");
+    }//GEN-LAST:event_Btn_Delete2ActionPerformed
 
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+    private void Btn_Edit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Edit2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
+        Estados objGen = new Estados();
+        objGen.setId_Estados(Integer.parseInt(this.txtCodigo.getText()));
+        objGen.setNombre_estados(this.txtName2.getText());
+        objGen.setDes_estados(this.txtDes2.getText());
 
-    private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        
+        EstController.ActualizarGenerosController(objGen);
+        JOptionPane.showMessageDialog(this, "Registro correcto");
+        ListarTabla();
+    }//GEN-LAST:event_Btn_Edit2ActionPerformed
 
-// CREAR FUNCION PARA OBTENER TRANSACCION POR NOMBRE COMO EN EL REGISTRAR_USUARIOS Y DEMAS... 
-        
-        Transaccion old = tController.ObtenerTransaccionPorId(Integer.parseInt(this.txtCodigo.getText()));
-        Estados objCats = estController.GetEstadosXNombre(GetSelectedCat());
-        Transaccion objUS = new Transaccion();
-        objUS.setCodigo(Integer.parseInt(this.txtCodigo.getText()));
-        objUS.setFecha_Devolucion(old.getFecha_Devolucion());
-        objUS.setFecha_Reserva(old.getFecha_Reserva());
-        objUS.setFecha_Prestamo(old.getFecha_Prestamo());
-        objUS.setEstado(old.getEstado());
-        objUS.setMulta(old.getMulta());
-        objUS.setId_Libro(old.getId_Libro());
-        objUS.setId_Usuario(old.getId_Usuario());
-        objUS.setId_Estados(old.getId_Estados());
-        
-        
-        tController.ActualizarEstadoDeTransaccion(objUS);
-        JOptionPane.showMessageDialog(this, "Registro Actualizado!!");
+    private void Btn_Search2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Search2ActionPerformed
+        // TODO add your handling code here:
+        List<Estados> lst = EstController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
+        for(Estados x:lst){
+            this.txtName2.setText(x.getNombre_estados());
+            // System.out.println("error 1");
+            this.txtDes2.setText(x.getDes_estados());
 
-    }//GEN-LAST:event_AceptarActionPerformed
+        }
+    }//GEN-LAST:event_Btn_Search2ActionPerformed
+
+    private void Btn_New2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_New2ActionPerformed
+        // TODO add your handling code here:
+        txtCodigo.setText(EstController.GetCorrelativoController()+"");
+        txtName2.setText("");
+        txtDes2.setText("");
+    }//GEN-LAST:event_Btn_New2ActionPerformed
+
+    private void Btn_Save2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Save2ActionPerformed
+        // TODO add your handling code here:
+        Estados objGen = new Estados();
+        objGen.setId_Estados(Integer.parseInt(this.txtCodigo.getText()));
+        objGen.setNombre_estados(this.txtName2.getText());
+        objGen.setDes_estados(this.txtDes2.getText());
+
+        EstController.InsertarLibrosController(objGen);
+        JOptionPane.showMessageDialog(this, "Registro correcto");
+        ListarTabla();
+    }//GEN-LAST:event_Btn_Save2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Aceptar;
-    private javax.swing.JButton BtnBuscar;
-    private javax.swing.JComboBox<String> CboxCategoria;
+    private javax.swing.JButton Btn_Delete2;
+    private javax.swing.JButton Btn_Edit2;
+    private javax.swing.JButton Btn_New2;
+    private javax.swing.JButton Btn_Save2;
+    private javax.swing.JButton Btn_Search2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tb_Gen2;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtEstadoActual;
-    private javax.swing.JTextField txtIdEstadoActual;
+    private javax.swing.JTextField txtDes2;
+    private javax.swing.JTextField txtName2;
     // End of variables declaration//GEN-END:variables
 }

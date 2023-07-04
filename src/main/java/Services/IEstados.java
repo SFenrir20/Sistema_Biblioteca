@@ -13,4 +13,11 @@ import java.util.List;
  */
 public interface IEstados {
     List<Estados> GetAll();
+    
+    List<Estados> getAllEstados();
+    void addEstados(Estados gen);
+    void removeEstados(Estados gen);
+    void updateEstados(Estados gen);
+    List<Estados> BuscarLibroXCodigo(int codigo);
+    int NewEstados();
 }

@@ -26,5 +26,28 @@ public class EstadosController {
         }
         return null;
     }
+      public List<Estados> getLstGenerosController(){
+        return new EstadosRepository().getAllEstados();
+    }
     
+    public void InsertarLibrosController(Estados gen){
+        new EstadosRepository().addEstados(gen);
+    }
+    
+    public void EliminarLibrosController(Estados gen){
+        new EstadosRepository().removeEstados(gen);
+    }
+    
+    public void ActualizarGenerosController(Estados gen){
+        new EstadosRepository().updateEstados(gen);
+    }
+    
+    public int GetCorrelativoController(){
+        return new EstadosRepository().NewEstados();
+    }
+    
+    public List<Estados> BuscarCodigoController(int codigo){
+        return new EstadosRepository().BuscarLibroXCodigo(codigo);
+    }
+     
 }
