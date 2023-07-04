@@ -26,12 +26,12 @@ public class CategoriaController {
         }
         return null;
     }
-        public List<Categorias_US> getLstGenerosController(){
+        public List<Categorias_US> getLstCategoriasController(){
         return new CategoriaRepository().getAllCategoria();
     }
     
-    public void InsertarLibrosController(Categorias_US gen){
-        new CategoriaRepository().addCategoria(gen);
+    public void InsertarCategroiaController(Categorias_US cat){
+        new CategoriaRepository().addCategoria(cat);
     }
     
     public void EliminarLibrosController(Categorias_US gen){

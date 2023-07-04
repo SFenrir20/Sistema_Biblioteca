@@ -54,6 +54,9 @@ public class Ver_Catalogo extends javax.swing.JInternalFrame {
             this.CboxNombreLi.addItem(item.getTitulo());
         }
     }
+    public void LALA(){
+        
+    }
     
 
     /**

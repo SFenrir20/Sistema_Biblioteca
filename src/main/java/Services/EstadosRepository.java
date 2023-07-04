@@ -134,7 +134,7 @@ public class EstadosRepository implements IEstados {
     public int NewEstados() {
          int SgtNum = 0;
         try {
-            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL GetCorrelativoGen}");
+            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL GetCorrelativoEstados}");
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 SgtNum = rs.getInt(1) + 1 ;

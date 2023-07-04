@@ -45,7 +45,7 @@ public class CategoriaRepository implements ICategoria{
     public List<Categorias_US> getAllCategoria() {
         try {
              List<Categorias_US> lstGen = new ArrayList<>();
-             CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL ListarGeneros}");
+             CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL ListarCategoria}");
              ResultSet rs = cs.executeQuery();
              while(rs.next()){
                  Categorias_US obj = new Categorias_US();
@@ -134,7 +134,7 @@ public class CategoriaRepository implements ICategoria{
     public int NewCategoria() {
          int SgtNum = 0;
         try {
-            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL GetCorrelativoCategoria}");
+            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL GetCorrelativoCat}");
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 SgtNum = rs.getInt(1) + 1 ;

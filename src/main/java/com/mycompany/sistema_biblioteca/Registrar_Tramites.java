@@ -308,7 +308,7 @@ public class Registrar_Tramites extends javax.swing.JInternalFrame {
           this.txtNumCopias.setText(x.getNumCopias()+"");
           this.txtFPrestamo.setText(fecha+"");
           this.txtFAPoxDevolucion.setText(fecha.plusDays(14)+"");
-          this.txt_FReserva.setText(fecha+"");
+          this.txt_FReserva.setText(fecha+ "");
           this.txt_FRecojo.setText(fecha.plusDays(5)+"");
           
       }

@@ -18,7 +18,10 @@ public interface ITransaccion {
     void addTransaccionPrestamo(Transaccion transaccion);
     void addTransaccionDebolucion(Transaccion transaccion);
     Transaccion transaccionPorId(int codigo);
-    void updateEstadoTransaccion(Transaccion transaccion);
+    
+    
+    /*echo por val y carlos*/
+    void updateEstadoTransaccion(Transaccion transaccion); 
     Transaccion getTransaccionPorNombre(String nom);
 
     

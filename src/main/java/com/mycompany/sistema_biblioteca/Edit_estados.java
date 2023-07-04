@@ -44,7 +44,7 @@ public class Edit_estados extends javax.swing.JInternalFrame {
             
             dtmGenero.addRow(vec);
         }
-        this.tb_Gen2.setModel(dtmGenero);
+        this.TB_Estados.setModel(dtmGenero);
     }
 
 
@@ -58,50 +58,32 @@ public class Edit_estados extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Btn_Delete2 = new javax.swing.JButton();
-        Btn_Edit2 = new javax.swing.JButton();
-        txtCodigo = new javax.swing.JTextField();
-        txtName2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtDes2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        Btn_Search2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tb_Gen2 = new javax.swing.JTable();
-        Btn_New2 = new javax.swing.JButton();
-        Btn_Save2 = new javax.swing.JButton();
+        txtCodigo = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtDes = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TB_Estados = new javax.swing.JTable();
+        btn_New = new javax.swing.JButton();
+        btn_Guardar = new javax.swing.JButton();
+        btn_Eliminar = new javax.swing.JButton();
+        btn_Edit = new javax.swing.JButton();
+        btn_buscar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
         setTitle("Editar Estados");
-
-        Btn_Delete2.setText("DELETE");
-        Btn_Delete2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Delete2ActionPerformed(evt);
-            }
-        });
-
-        Btn_Edit2.setText("EDIT");
-        Btn_Edit2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Edit2ActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Codigo:");
 
         jLabel2.setText("Nombre:");
 
-        Btn_Search2.setText("SEARCH");
-        Btn_Search2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Search2ActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Descripcion:");
 
-        tb_Gen2.setModel(new javax.swing.table.DefaultTableModel(
+        TB_Estados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -112,153 +94,95 @@ public class Edit_estados extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(tb_Gen2);
+        jScrollPane1.setViewportView(TB_Estados);
 
-        Btn_New2.setText("NEW");
-        Btn_New2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_New2ActionPerformed(evt);
-            }
-        });
+        btn_New.setText("Nuevo");
 
-        Btn_Save2.setText("SAVE");
-        Btn_Save2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Save2ActionPerformed(evt);
-            }
-        });
+        btn_Guardar.setText("Guardar");
+
+        btn_Eliminar.setText("eliminar");
+
+        btn_Edit.setText("Edit");
+
+        btn_buscar.setText("Buscar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Btn_New2)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3))))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(Btn_Save2)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(Btn_Delete2))
-                                .addComponent(txtCodigo)
-                                .addComponent(txtName2)
-                                .addComponent(txtDes2))
-                            .addGap(28, 28, 28)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Btn_Edit2)
-                                .addComponent(Btn_Search2))))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_New)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_Guardar)
+                        .addGap(26, 26, 26)
+                        .addComponent(btn_Eliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_Edit))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDes, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_buscar)))
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Btn_Search2))
-                    .addGap(19, 19, 19)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(txtName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(20, 20, 20)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(txtDes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Btn_New2)
-                        .addComponent(Btn_Save2)
-                        .addComponent(Btn_Delete2)
-                        .addComponent(Btn_Edit2))
-                    .addGap(18, 18, 18)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_New)
+                    .addComponent(btn_Guardar)
+                    .addComponent(btn_Eliminar)
+                    .addComponent(btn_Edit))
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Btn_Delete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Delete2ActionPerformed
-        // TODO add your handling code here:
-        Estados objGen = new Estados();
-        objGen.setId_Estados(Integer.parseInt(this.txtCodigo.getText()));
-        EstController.EliminarLibrosController(objGen);
-
-        JOptionPane.showMessageDialog(this, "¿Deseas borrar registro?");
-    }//GEN-LAST:event_Btn_Delete2ActionPerformed
-
-    private void Btn_Edit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Edit2ActionPerformed
-        // TODO add your handling code here:
-        Estados objGen = new Estados();
-        objGen.setId_Estados(Integer.parseInt(this.txtCodigo.getText()));
-        objGen.setNombre_estados(this.txtName2.getText());
-        objGen.setDes_estados(this.txtDes2.getText());
-
-        EstController.ActualizarGenerosController(objGen);
-        JOptionPane.showMessageDialog(this, "Registro correcto");
-        ListarTabla();
-    }//GEN-LAST:event_Btn_Edit2ActionPerformed
-
-    private void Btn_Search2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Search2ActionPerformed
-        // TODO add your handling code here:
-        List<Estados> lst = EstController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
-        for(Estados x:lst){
-            this.txtName2.setText(x.getNombre_estados());
-            // System.out.println("error 1");
-            this.txtDes2.setText(x.getDes_estados());
-
-        }
-    }//GEN-LAST:event_Btn_Search2ActionPerformed
-
-    private void Btn_New2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_New2ActionPerformed
-        // TODO add your handling code here:
-        txtCodigo.setText(EstController.GetCorrelativoController()+"");
-        txtName2.setText("");
-        txtDes2.setText("");
-    }//GEN-LAST:event_Btn_New2ActionPerformed
-
-    private void Btn_Save2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Save2ActionPerformed
-        // TODO add your handling code here:
-        Estados objGen = new Estados();
-        objGen.setId_Estados(Integer.parseInt(this.txtCodigo.getText()));
-        objGen.setNombre_estados(this.txtName2.getText());
-        objGen.setDes_estados(this.txtDes2.getText());
-
-        EstController.InsertarLibrosController(objGen);
-        JOptionPane.showMessageDialog(this, "Registro correcto");
-        ListarTabla();
-    }//GEN-LAST:event_Btn_Save2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Delete2;
-    private javax.swing.JButton Btn_Edit2;
-    private javax.swing.JButton Btn_New2;
-    private javax.swing.JButton Btn_Save2;
-    private javax.swing.JButton Btn_Search2;
+    private javax.swing.JTable TB_Estados;
+    private javax.swing.JButton btn_Edit;
+    private javax.swing.JButton btn_Eliminar;
+    private javax.swing.JButton btn_Guardar;
+    private javax.swing.JButton btn_New;
+    private javax.swing.JButton btn_buscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable tb_Gen2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtDes2;
-    private javax.swing.JTextField txtName2;
+    private javax.swing.JTextField txtDes;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

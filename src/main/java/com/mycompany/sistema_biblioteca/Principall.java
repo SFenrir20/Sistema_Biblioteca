@@ -26,12 +26,12 @@ public class Principall extends javax.swing.JFrame {
             case 1:
                 break;
             case 2:
-                Jedit.setVisible(false);
+                opEditEstados.setVisible(false);
                 break;
             case 3:
                 Jadmin.setVisible(false);
                 Jlibros.setVisible(false);
-                Jedit.setVisible(false);
+                opEditEstados.setVisible(false);
                 opTramites.setVisible(false);
                 Ver_Debolucion.setVisible(false);
                 opHistorial.setVisible(false);
@@ -62,9 +62,9 @@ public class Principall extends javax.swing.JFrame {
         Ver_Debolucion = new javax.swing.JMenuItem();
         opCatalogo = new javax.swing.JMenuItem();
         opHistorial = new javax.swing.JMenuItem();
-        Jedit = new javax.swing.JMenu();
+        opEditEstados = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        opEditCat = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MAIN PRINCIPAL");
@@ -163,7 +163,7 @@ public class Principall extends javax.swing.JFrame {
 
         jMenuBar1.add(Jtrans);
 
-        Jedit.setText("Edit");
+        opEditEstados.setText("Edit");
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         jMenuItem5.setText("edit_estados");
@@ -172,18 +172,18 @@ public class Principall extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        Jedit.add(jMenuItem5);
+        opEditEstados.add(jMenuItem5);
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem6.setText("edit_categorias");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        opEditCat.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        opEditCat.setText("edit_categorias");
+        opEditCat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                opEditCatActionPerformed(evt);
             }
         });
-        Jedit.add(jMenuItem6);
+        opEditEstados.add(opEditCat);
 
-        jMenuBar1.add(Jedit);
+        jMenuBar1.add(opEditEstados);
 
         setJMenuBar(jMenuBar1);
 
@@ -242,6 +242,9 @@ public class Principall extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        Edit_estados Es = new Edit_estados();
+        escritorio.add(Es);
+        Es.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void opCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCatalogoActionPerformed
@@ -262,12 +265,12 @@ public class Principall extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JadminMouseClicked
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void opEditCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opEditCatActionPerformed
         // TODO add your handling code here:
         Edit_Categoria EC = new Edit_Categoria();
         escritorio.add(EC);
         EC.show();
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_opEditCatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,15 +309,15 @@ public class Principall extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Jadmin;
-    private javax.swing.JMenu Jedit;
     private javax.swing.JMenu Jlibros;
     private javax.swing.JMenu Jtrans;
     private javax.swing.JMenuItem Ver_Debolucion;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem opCatalogo;
+    private javax.swing.JMenuItem opEditCat;
+    private javax.swing.JMenu opEditEstados;
     private javax.swing.JMenuItem opGeneros;
     private javax.swing.JMenuItem opHistorial;
     private javax.swing.JMenuItem opRegistrarLibros;
