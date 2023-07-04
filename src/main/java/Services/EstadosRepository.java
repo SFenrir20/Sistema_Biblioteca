@@ -22,7 +22,7 @@ public class EstadosRepository implements IEstados {
     public List<Estados> GetAll() {
         try {
             List<Estados> lstEs = new ArrayList<>();
-            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL ListarEstados}");
+            CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL ListarEst}");
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 Estados objEst = new Estados();

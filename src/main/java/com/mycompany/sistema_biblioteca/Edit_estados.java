@@ -7,7 +7,6 @@ package com.mycompany.sistema_biblioteca;
 import Controllers.EstadosController;
 import Model.Estados;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,9 +16,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Edit_estados extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel dtmGenero = new DefaultTableModel();
+    private DefaultTableModel dtmEstado = new DefaultTableModel();
     private EstadosController EstController = new EstadosController();
-    private DefaultComboBoxModel Cbox = new DefaultComboBoxModel();
+    
   
     
     public Edit_estados() {
@@ -29,22 +28,22 @@ public class Edit_estados extends javax.swing.JInternalFrame {
     }
     
       public void llenarTabla(){
-        dtmGenero.addColumn("Codigo");
-        dtmGenero.addColumn("Nombre Categoria");
-        dtmGenero.addColumn("Descripcion");
+        dtmEstado.addColumn("Codigo");
+        dtmEstado.addColumn("Nombre Categoria");
+        dtmEstado.addColumn("Descripcion");
     }
        public void ListarTabla(){
-        dtmGenero.setRowCount(0);
-        List<Estados> lst = EstController.getLstGenerosController();
+        dtmEstado.setRowCount(0);
+        List<Estados> lst = EstController.getLstEstadoController();
         for (int i=0;i<lst.size();i++){
             Object[] vec = new Object[3];
             vec[0] = lst.get(i).getId_Estados();
             vec[1] = lst.get(i).getNombre_estados();
             vec[2] = lst.get(i).getDes_estados();
             
-            dtmGenero.addRow(vec);
+            dtmEstado.addRow(vec);
         }
-        this.TB_Estados.setModel(dtmGenero);
+        this.TB_Estados.setModel(dtmEstado);
     }
 
 
@@ -97,14 +96,39 @@ public class Edit_estados extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(TB_Estados);
 
         btn_New.setText("Nuevo");
+        btn_New.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_NewActionPerformed(evt);
+            }
+        });
 
         btn_Guardar.setText("Guardar");
+        btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_GuardarActionPerformed(evt);
+            }
+        });
 
         btn_Eliminar.setText("eliminar");
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarActionPerformed(evt);
+            }
+        });
 
         btn_Edit.setText("Edit");
+        btn_Edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EditActionPerformed(evt);
+            }
+        });
 
         btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,6 +192,56 @@ public class Edit_estados extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NewActionPerformed
+        // TODO add your handling code here:
+        txtCodigo.setText(EstController.GetCorrelativoController()+"");
+        txtNombre.setText("");
+        txtDes.setText("");
+    }//GEN-LAST:event_btn_NewActionPerformed
+
+    private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
+        // TODO add your handling code here:
+        Estados objEst = new Estados();
+        objEst.setId_Estados(Integer.parseInt(this.txtCodigo.getText()));
+        objEst.setNombre_estados(this.txtNombre.getText());
+        objEst.setDes_estados(this.txtDes.getText());
+        
+        EstController.InsertarEstadosController(objEst);
+        JOptionPane.showMessageDialog(this, "Registro correcto");
+        ListarTabla();
+    }//GEN-LAST:event_btn_GuardarActionPerformed
+
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
+        // TODO add your handling code here:
+        Estados objEst = new Estados();
+        objEst.setId_Estados(Integer.parseInt(this.txtCodigo.getText()));
+        EstController.EliminarEstadosController(objEst);
+        
+        JOptionPane.showMessageDialog(this, "¿Deseas borrar registro?");
+    }//GEN-LAST:event_btn_EliminarActionPerformed
+
+    private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditActionPerformed
+        // TODO add your handling code here:
+        Estados objEst = new Estados();
+        objEst.setId_Estados(Integer.parseInt(this.txtCodigo.getText()));
+        objEst.setNombre_estados(this.txtNombre.getText());
+        objEst.setDes_estados(this.txtDes.getText());
+        
+        EstController.ActualizarEstadosController(objEst);
+        JOptionPane.showMessageDialog(this, "Registro correcto");
+        ListarTabla();
+    }//GEN-LAST:event_btn_EditActionPerformed
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        // TODO add your handling code here:
+            List<Estados> lst = EstController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
+        for(Estados x:lst){
+            this.txtNombre.setText(x.getNombre_estados());
+           // System.out.println("error 1");
+            this.txtDes.setText(x.getDes_estados());
+        }
+    }//GEN-LAST:event_btn_buscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -30,15 +30,15 @@ public class CategoriaController {
         return new CategoriaRepository().getAllCategoria();
     }
     
-    public void InsertarCategroiaController(Categorias_US cat){
+    public void InsertarCategoriaController(Categorias_US cat){
         new CategoriaRepository().addCategoria(cat);
     }
     
-    public void EliminarLibrosController(Categorias_US gen){
+    public void EliminarCategoriaController(Categorias_US gen){
         new CategoriaRepository().removeCategoria(gen);
     }
     
-    public void ActualizarGenerosController(Categorias_US gen){
+    public void ActualizarCategoriaController(Categorias_US gen){
         new CategoriaRepository().updateCategoria(gen);
     }
     

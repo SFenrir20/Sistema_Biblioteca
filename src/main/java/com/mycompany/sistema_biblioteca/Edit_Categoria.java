@@ -4,17 +4,44 @@
  */
 package com.mycompany.sistema_biblioteca;
 
+import Controllers.CategoriaController;
+import Model.Categorias_US;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author santi
  */
 public class Edit_Categoria extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Edit_Categoria
-     */
+    private DefaultTableModel dtmCategoria = new DefaultTableModel();
+    private CategoriaController CatController = new CategoriaController();
+    
+  
     public Edit_Categoria() {
         initComponents();
+        llenarTabla();
+        ListarTabla();
+    }
+        
+      public void llenarTabla(){
+        dtmCategoria.addColumn("Codigo");
+        dtmCategoria.addColumn("Nombre Categoria");
+        dtmCategoria.addColumn("Descripcion");
+    }
+       public void ListarTabla(){
+        dtmCategoria.setRowCount(0);
+        List<Categorias_US> lst = CatController.getLstCategoriasController();
+        for (int i=0;i<lst.size();i++){
+            Object[] vec = new Object[3];
+            vec[0] = lst.get(i).getId_Categoria();
+            vec[1] = lst.get(i).getNombre_Categoria();
+            vec[2] = lst.get(i).getDes_Categoria();
+            
+            dtmCategoria.addRow(vec);
+        }
+        this.TB_Cats.setModel(dtmCategoria);
     }
 
     /**
@@ -40,7 +67,7 @@ public class Edit_Categoria extends javax.swing.JInternalFrame {
         btnDelete = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        TBCategorias = new javax.swing.JTable();
+        TB_Cats = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,16 +94,41 @@ public class Edit_Categoria extends javax.swing.JInternalFrame {
         jLabel3.setText("Descripcion:");
 
         btnNew.setText("New");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
 
         btnSave.setText("save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnEdit.setText("Editatr");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("DEletear");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        TBCategorias.setModel(new javax.swing.table.DefaultTableModel(
+        TB_Cats.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -87,7 +139,7 @@ public class Edit_Categoria extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(TBCategorias);
+        jScrollPane2.setViewportView(TB_Cats);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,11 +171,11 @@ public class Edit_Categoria extends javax.swing.JInternalFrame {
                                     .addComponent(txtDes))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnBuscar)))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,17 +199,66 @@ public class Edit_Categoria extends javax.swing.JInternalFrame {
                     .addComponent(btnSave)
                     .addComponent(btnEdit)
                     .addComponent(btnDelete))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        // TODO add your handling code here:
+        txtCodigo.setText(CatController.GetCorrelativoController()+"");
+        txtNombre.setText("");
+        txtDes.setText("");
+    }//GEN-LAST:event_btnNewActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        Categorias_US objCat = new Categorias_US();
+        objCat.setId_Categoria(Integer.parseInt(this.txtCodigo.getText()));
+        objCat.setNombre_Categoria(this.txtNombre.getText());
+        objCat.setDes_Categoria(this.txtDes.getText());
+        
+        CatController.InsertarCategoriaController(objCat);
+        JOptionPane.showMessageDialog(this, "Registro correcto");
+        ListarTabla();
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        Categorias_US objCat = new Categorias_US();
+        objCat.setId_Categoria(Integer.parseInt(this.txtCodigo.getText()));
+        objCat.setNombre_Categoria(this.txtNombre.getText());
+        objCat.setDes_Categoria(this.txtDes.getText());
+        
+        CatController.ActualizarCategoriaController(objCat);
+        JOptionPane.showMessageDialog(this, "Registro correcto");
+        ListarTabla();
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        Categorias_US objCat = new Categorias_US();
+        objCat.setId_Categoria(Integer.parseInt(this.txtCodigo.getText()));
+        CatController.EliminarCategoriaController(objCat);
+
+        JOptionPane.showMessageDialog(this, "¿Deseas borrar registro?");
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+           List<Categorias_US> lst = CatController.BuscarCodigoController(Integer.parseInt(this.txtCodigo.getText()));
+        for(Categorias_US x:lst){
+            this.txtNombre.setText(x.getNombre_Categoria());
+           // System.out.println("error 1");
+            this.txtDes.setText(x.getDes_Categoria());
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TBCategorias;
+    private javax.swing.JTable TB_Cats;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;

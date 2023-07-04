@@ -130,7 +130,7 @@ public class CategoriaRepository implements ICategoria{
         return null;
     }
 
-   
+    @Override
     public int NewCategoria() {
          int SgtNum = 0;
         try {
