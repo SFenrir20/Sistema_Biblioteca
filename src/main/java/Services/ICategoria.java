@@ -19,7 +19,7 @@ public interface ICategoria {
     void addCategoria(Categorias_US gen);
     void removeCategoria(Categorias_US gen);
     void updateCategoria(Categorias_US gen);
-    List<Categorias_US> BuscarLibroXCodigo(int codigo);
+    List<Categorias_US> BuscarCatXCodigo(int codigo);
     int NewCategoria();
     
 }

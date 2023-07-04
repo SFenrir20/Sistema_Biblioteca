@@ -47,6 +47,6 @@ public class CategoriaController {
     }
     
     public List<Categorias_US> BuscarCodigoController(int codigo){
-        return new CategoriaRepository().BuscarLibroXCodigo(codigo);
+        return new CategoriaRepository().BuscarCatXCodigo(codigo);
     }
 }

@@ -104,7 +104,7 @@ public class EstadosRepository implements IEstados {
     }
 
     @Override
-    public List<Estados> BuscarLibroXCodigo(int codigo) {
+    public List<Estados> BuscarEstadoXCodigo(int codigo) {
         try {
             List<Estados> lst = new ArrayList<>();
             CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL BuscarEstado(?)}");

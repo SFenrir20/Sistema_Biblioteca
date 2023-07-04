@@ -517,10 +517,7 @@ public class Edit_Categoria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_Btn_SearchActionPerformed
 
     private void Btn_New1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_New1ActionPerformed
-        // TODO add your handling code here:
-        txtCodigo.setText(CatController.GetCorrelativoController()+"");
-        txtName.setText("");
-        txtDes.setText("");
+
     }//GEN-LAST:event_Btn_New1ActionPerformed
 
     private void Btn_Save1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Save1ActionPerformed

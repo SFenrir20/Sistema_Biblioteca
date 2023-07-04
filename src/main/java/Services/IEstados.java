@@ -18,6 +18,6 @@ public interface IEstados {
     void addEstados(Estados gen);
     void removeEstados(Estados gen);
     void updateEstados(Estados gen);
-    List<Estados> BuscarLibroXCodigo(int codigo);
+    List<Estados> BuscarEstadoXCodigo(int codigo);
     int NewEstados();
 }

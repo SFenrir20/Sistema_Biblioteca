@@ -47,7 +47,7 @@ public class EstadosController {
     }
     
     public List<Estados> BuscarCodigoController(int codigo){
-        return new EstadosRepository().BuscarLibroXCodigo(codigo);
+        return new EstadosRepository().BuscarEstadoXCodigo(codigo);
     }
      
 }

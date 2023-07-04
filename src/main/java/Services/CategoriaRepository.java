@@ -104,7 +104,7 @@ public class CategoriaRepository implements ICategoria{
     }
 
     @Override
-    public List<Categorias_US> BuscarLibroXCodigo(int codigo) {
+    public List<Categorias_US> BuscarCatXCodigo(int codigo) {
         try {
             List<Categorias_US> lst = new ArrayList<>();
             CallableStatement cs = Conexion.ObtenerConexion().prepareCall("{CALL BuscarCategoria(?)}");
