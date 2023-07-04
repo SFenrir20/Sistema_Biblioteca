@@ -4,6 +4,12 @@
  */
 package com.mycompany.sistema_biblioteca;
 
+import Controllers.EstadosController;
+import Controllers.TransaccionController;
+import Model.Estados;
+import Model.Transaccion;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author santi
@@ -13,10 +19,19 @@ public class Edit_estados extends javax.swing.JInternalFrame {
     /**
      * Creates new form Edit_estados
      */
+    
+    private TransaccionController tController = new TransaccionController();
+    private EstadosController estController = new EstadosController();
+    
     public Edit_estados() {
         initComponents();
     }
 
+    public String GetSelectedCat(){
+        return CboxCategoria.getSelectedItem().toString();
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,32 +41,161 @@ public class Edit_estados extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        BtnBuscar = new javax.swing.JButton();
+        txtCodigo = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        Aceptar = new javax.swing.JButton();
+        txtEstadoActual = new javax.swing.JTextField();
+        CboxCategoria = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        txtIdEstadoActual = new javax.swing.JTextField();
 
-        jLabel1.setText("jLabel1");
+        setTitle("Editar Estados");
+
+        BtnBuscar.setText("Buscar");
+        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarActionPerformed(evt);
+            }
+        });
+
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Id de transaccion");
+
+        jLabel3.setText("Estado Actual del Libro");
+
+        jLabel2.setText("Id de Estado Actualizado");
+
+        Aceptar.setText("Actualizar");
+        Aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AceptarActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Id  del Estado Actual");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel3))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEstadoActual)
+                            .addComponent(CboxCategoria, 0, 163, Short.MAX_VALUE)
+                            .addComponent(txtIdEstadoActual)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BtnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE)
+                .addComponent(BtnBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtEstadoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtIdEstadoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(CboxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(Aceptar)
+                .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
+        // TODO add your handling code here:
+        Transaccion objUs = tController.ObtenerTransaccionPorId(Integer.parseInt(this.txtCodigo.getText()));
+        
+        this.txtEstadoActual.setText(objUs.getEstado());
+       // System.out.println("error 1");
+        this.CboxCategoria.setSelectedItem(objUs.getEstado());
+       // System.out.println("error 2");
+        this.txtIdEstadoActual.setText(String.valueOf(objUs.getId_Estados()));
+
+        txtCodigo.setEditable(false);
+        txtIdEstadoActual.setEditable(false);
+        txtEstadoActual.setEditable(false);
+            
+    
+    }//GEN-LAST:event_BtnBuscarActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
+        
+
+// CREAR FUNCION PARA OBTENER TRANSACCION POR NOMBRE COMO EN EL REGISTRAR_USUARIOS Y DEMAS... 
+        
+        Transaccion old = tController.ObtenerTransaccionPorId(Integer.parseInt(this.txtCodigo.getText()));
+        Estados objCats = estController.GetEstadosXNombre(GetSelectedCat());
+        Transaccion objUS = new Transaccion();
+        objUS.setCodigo(Integer.parseInt(this.txtCodigo.getText()));
+        objUS.setFecha_Devolucion(old.getFecha_Devolucion());
+        objUS.setFecha_Reserva(old.getFecha_Reserva());
+        objUS.setFecha_Prestamo(old.getFecha_Prestamo());
+        objUS.setEstado(old.getEstado());
+        objUS.setMulta(old.getMulta());
+        objUS.setId_Libro(old.getId_Libro());
+        objUS.setId_Usuario(old.getId_Usuario());
+        objUS.setId_Estados(old.getId_Estados());
+        
+        
+        tController.ActualizarEstadoDeTransaccion(objUS);
+        JOptionPane.showMessageDialog(this, "Registro Actualizado!!");
+
+    }//GEN-LAST:event_AceptarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton Aceptar;
+    private javax.swing.JButton BtnBuscar;
+    private javax.swing.JComboBox<String> CboxCategoria;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtEstadoActual;
+    private javax.swing.JTextField txtIdEstadoActual;
     // End of variables declaration//GEN-END:variables
 }
